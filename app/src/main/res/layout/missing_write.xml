@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<!--실종동물 메인페이지로 이동하는 버튼-->
+        <ImageButton
+            android:id="@+id/missing_write_return_missing"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실종 동물 등록"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp">
+<!--실종 돔물 사진 이미지뷰-->
+        <ImageView
+            android:id="@+id/missing_write_petphoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/graybox"
+            android:scaleType="fitXY"/>
+<!--실종 동물 사진 등록 버튼-->
+        <ImageButton
+            android:id="@+id/missing_write_photoadd"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/missing_write_petphoto"
+            android:src="@drawable/baseline_add_circle_24"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/missing_write_photoadd"
+            android:layout_below="@+id/missing_write_petphoto"
+            android:layout_marginTop="10dp"
+            android:text=" 사진 등록"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/missing_write_petphoto"
+            android:layout_marginLeft="10dp"
+            android:text="실종 장소"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+<!--지도 출력 버튼-->
+        <ImageButton
+            android:id="@+id/missing_write_placeButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/baseline_place_24"
+            android:background="@android:color/transparent"/>
+<!--실종 장소 출력 텍스트뷰-->
+        <TextView
+            android:id="@+id/missing_write_place"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/missing_write_petphoto"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:gravity="top"
+            android:background="@drawable/graybox"/>
+
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/missing_write_petphoto"
+            android:layout_below="@+id/missing_write_place"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="실종 날짜"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+<!--실종 날짜 출력 텍스트뷰-->
+        <TextView
+            android:id="@+id/missing_write_date"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_toRightOf="@+id/missing_write_petphoto"
+            android:layout_below="@+id/missing_write_place"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="00/00/00"
+            android:textSize="15sp"
+            android:background="@drawable/graybox"/>
+<!--datepicker 출력 버튼-->
+        <ImageButton
+            android:id="@+id/missing_write_dateButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/missing_write_place"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/baseline_calendar_month_24"
+            android:background="@android:color/transparent"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="특징"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+<!--실종동물 특징 입력창-->
+    <EditText
+        android:id="@+id/missing_write_char"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:hint="특징을 입력하세요. (최대 120자 입력 가능)"
+        android:textSize="15sp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:lines="4"
+        android:inputType="textMultiLine"
+        android:background="@drawable/graybox"/>
+
+<!--실종 동물 등록 버튼-->
+    <android.widget.Button
+        android:id="@+id/missing_write_registerB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="등록"
+        android:textSize="17sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/orangebox"/>
+
+</LinearLayout>

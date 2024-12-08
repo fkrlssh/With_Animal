@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"/>
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="600dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp">
+<!--게시판 리스트로 이동하는 버튼-->
+        <ImageButton
+            android:id="@+id/board_textpage_returnB"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:background="@android:color/transparent"/>
+<!--게시판 카테고리 질문&꿀팁-->
+        <TextView
+            android:id="@+id/board_category"
+            android:layout_width="80dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/board_textpage_returnB"
+            android:gravity="center"
+            android:text="카테고리"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:background="@drawable/orangebox" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/board_textpage_returnB">
+
+            <ScrollView
+                android:id="@+id/board_textpage_scroll"
+                android:layout_width="375dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:fillViewport="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+<!--제목-->
+                    <TextView
+                        android:id="@+id/board_textpage_title"
+                        android:layout_width="375dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="20sp"
+                        android:text="제목"
+                        android:textStyle="bold"/>
+<!--본문-->
+                    <TextView
+                        android:id="@+id/board_textpage_text"
+                        android:layout_width="375dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/board_textpage_title"
+                        android:text="본문 내용"
+                        android:textSize="15sp"
+                        android:padding="10dp"
+                        android:background="@drawable/graybox"/>
+
+                    <RelativeLayout
+                        android:layout_width="375dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/board_textpage_text">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="작성자 ID:"
+                            android:textSize="15sp"
+                            android:textColor="#888888" />
+<!--작성자 아이디-->
+                        <TextView
+                            android:id="@+id/board_textpage_userid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:padding="5dp"
+                            android:text="id123"
+                            android:textColor="#888888"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="70dp" />
+<!--작성 날짜-->
+                        <TextView
+                            android:id="@+id/board_textpage_date"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="2024/01/01"
+                            android:textColor="#888888"
+                            android:textSize="15sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/board_textpage_userid"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="375dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="5dp"
+                                android:textSize="20sp"
+                                android:text="댓글"
+                                android:textStyle="bold"/>
+
+                            <View
+                                android:layout_width="375dp"
+                                android:layout_height="2dp"
+                                android:background="@drawable/orangebox"></View>
+<!--댓글 리스트-->
+                            <ListView
+                                android:id="@+id/board_textpage_comment_list"
+                                android:layout_width="375dp"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:scrollbars="none" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="15dp">
+<!--댓글 입력창-->
+    <EditText
+        android:id="@+id/board_textpage_comment"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:hint="댓글을 작성하세요."
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/graybox"
+        android:layout_gravity="center_horizontal"/>
+<!--댓글 등록 버튼-->
+    <ImageButton
+        android:id="@+id/board_textpage_comment_sendB"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_send_24"/>
+
+</RelativeLayout>
+
+</RelativeLayout>

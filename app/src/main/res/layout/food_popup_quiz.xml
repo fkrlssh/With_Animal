@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/graybox">
+<!--팝업창 닫기 버튼-->
+        <ImageButton
+            android:id="@+id/xquiz"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/closebutton"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"> </ImageButton>
+<!--질문-->
+        <TextView
+            android:id="@+id/quiz"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:text="Q. 강아지는 초콜릿을 먹어도 된다?"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/quiz">
+<!--퀴즈 선택지 O-->
+            <android.widget.Button
+                android:id="@+id/rightB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:text="O"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:background="@drawable/orangebox"/>
+<!--퀴즈 선택지 X-->
+            <android.widget.Button
+                android:id="@+id/wrongB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:text="X"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:background="@drawable/orangebox"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

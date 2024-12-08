@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"/>
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp">
+<!--메인 게시판으로 이동하는 버튼-->
+        <ImageButton
+            android:id="@+id/board_write_return_board"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/board_write_return_board"
+            android:text="글 쓰기"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <!--글쓰기 등록 완료 버튼-->
+        <android.widget.Button
+            android:id="@+id/board_wrtie_registerB"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:text="등록"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:background="@drawable/orangebox"/>
+
+        <ScrollView
+            android:id="@+id/board_textpage_scroll"
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:fillViewport="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/board_wrtie_registerB"
+            android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="375dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="제목"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+                <!--제목 입력-->
+                <EditText
+                    android:id="@+id/board_write_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="제목을 작성하세요."
+                    android:textSize="17sp"
+                    android:padding="10dp"
+                    android:background="@drawable/graybox"/>
+
+            </LinearLayout>
+
+            <!--본문 내용 입력-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/graybox"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/board_write_text"
+                    android:layout_width="375dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:gravity="top"
+                    android:hint="내용을 입력하세요."
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:minLines="7"/>
+
+            </LinearLayout>
+
+
+"
+
+            <LinearLayout
+                android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+                <!--사진 등록 버튼-->
+                <android.widget.Button
+                    android:id="@+id/board_write_add_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="사진 등록"
+                    android:textSize="15sp"
+                    android:background="@drawable/graybox"
+                    android:textStyle="bold" />
+                <!--사진 파일 이름-->
+                <TextView
+                    android:id="@+id/board_write_photo_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="image.file.name"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="게시판 지정"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+            <!--등록 게시판 선택창-->
+            <android.widget.RadioGroup
+                android:id="@+id/boardwrite_RG"
+                android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+                <!--질문 게시판 등록-->
+                <android.widget.RadioButton
+                    android:id="@+id/board_write_question"
+                    android:layout_width="187dp"
+                    android:layout_height="35dp"
+                    android:text="질문"
+                    android:background="@drawable/radiobuttonleft"
+                    android:textColor="@drawable/radiobuttontext"
+                    android:textAlignment="center"
+                    android:button="@null"/>
+                <!--꿀팁 게시판 등록-->
+                <android.widget.RadioButton
+                    android:id="@+id/board_wrtie_tip"
+                    android:layout_width="187dp"
+                    android:layout_height="35dp"
+                    android:text="꿀팁"
+                    android:background="@drawable/radiobuttonright"
+                    android:textColor="@drawable/radiobuttontext"
+                    android:textAlignment="center"
+                    android:layout_marginRight="2dp"
+                    android:button="@null"/>
+            </android.widget.RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

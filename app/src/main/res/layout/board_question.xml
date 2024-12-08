@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"/>
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp">
+<!--검색창-->
+        <EditText
+            android:id="@+id/quetion_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="검색어를 입력하세요."
+            android:textSize="15sp"
+            android:paddingLeft="40dp"
+            android:background="@drawable/graybox"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/baseline_search_24"/>
+
+        <RelativeLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/quetion_search"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true">
+<!--전체 게시판으로 돌아가기 버튼-->
+            <ImageButton
+                android:id="@+id/question_return_board"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/question_return_board"
+                android:text="질문 게시판"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+<!--질문 리스트뷰-->
+            <ScrollView
+                android:id="@+id/question_scroll"
+                android:layout_width="373dp"
+                android:layout_height="610dp"
+                android:layout_below="@+id/question_return_board"
+                android:layout_marginTop="10dp"
+                android:fillViewport="true">
+
+                <ListView
+                    android:id="@+id/question_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </ScrollView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

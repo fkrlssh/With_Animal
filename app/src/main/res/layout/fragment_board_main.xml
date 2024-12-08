@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".board_main"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"></ImageView>
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true">
+<!--검색팡-->
+        <EditText
+            android:id="@+id/board_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="검색어를 입력하세요."
+            android:textSize="15dp"
+            android:paddingLeft="40dp"
+            android:background="@drawable/graybox"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/baseline_search_24"/>
+
+        <LinearLayout
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/board_search">
+<!--질문 게시판 이동 버튼-->
+        <android.widget.Button
+            android:id="@+id/board_questionB"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/orangebox"
+            android:text="질문 게시판"
+            android:textSize="15sp"
+            android:textColor="@color/white" />
+<!--꿀팁 게시판 이동 버튼-->
+        <android.widget.Button
+            android:id="@+id/board_tipB"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/orangebox"
+            android:text="꿀팁 게시판"
+            android:textSize="15sp"
+            android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp">
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체 게시판"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <!--글쓰기 버튼-->
+                <android.widget.Button
+                android:id="@+id/board_writeB"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:background="@drawable/orangebox"
+                android:text="글쓰기"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/board_writeB"
+                    android:layout_marginTop="10dp">
+
+                    <ScrollView
+                        android:id="@+id/board_scroll"
+                        android:layout_width="375dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:fillViewport="true">
+
+                        <!--게시판 리스트뷰-->
+                        <ListView
+                            android:id="@+id/borad_listview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none">
+                        </ListView>
+                    </ScrollView>
+
+                </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

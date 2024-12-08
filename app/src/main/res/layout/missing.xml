@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"></ImageView>
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp">
+<!--실종 동물 검색창-->
+        <EditText
+            android:id="@+id/missing_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="검색어를 입력하세요."
+            android:textSize="15dp"
+            android:paddingLeft="40dp"
+            android:background="@drawable/graybox"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/baseline_search_24"/>
+
+        <RelativeLayout
+            android:layout_width="375dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/missing_search"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true">
+<!--홈화면 이동 버튼-->
+            <ImageButton
+                android:id="@+id/missing_return_home"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/missing_return_home"
+                android:text="실종 동물 리스트"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+<!--실종 동물 글쓰기 버튼-->
+            <android.widget.Button
+                android:id="@+id/missing_writeButton"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/orangebox"
+                android:text="등록"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical" />
+
+            <ScrollView
+                android:id="@+id/missing_scroll"
+                android:layout_below="@id/missing_writeButton"
+                android:layout_width="375dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fillViewport="true">
+<!--실종 동물 리스트뷰-->
+                <ListView
+                    android:id="@+id/missing_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:dividerHeight="10dp"
+                    android:scrollbars="none">
+                </ListView>
+            </ScrollView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

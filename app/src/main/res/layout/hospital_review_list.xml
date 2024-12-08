@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+<!--작성자 아이디-->
+        <TextView
+            android:id="@+id/review_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="작성자 아이디"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/review_id"
+            android:src="@drawable/baseline_star_24"/>
+<!--후기 별점-->
+        <TextView
+            android:id="@+id/rating_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/review_id"
+            android:layout_marginLeft="25dp"
+            android:text="5.0"
+            android:textSize="15sp"/>
+<!--작성 날짜-->
+        <TextView
+            android:id="@+id/review_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="24/11/05"
+            android:textColor="#888888"/>
+<!--후기 내용-->
+        <TextView
+            android:id="@+id/review_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/review_id"
+            android:text="후기 내용"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"/>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

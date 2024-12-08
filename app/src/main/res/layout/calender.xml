@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--  헤더라인  -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"/>
+
+    <!--  돌아가기 버튼 -->
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:scaleType="centerInside"
+        android:background="@android:color/transparent" />
+
+    <!-- 달력 년월 레이아웃 -->
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- 이전 달로 이동 버튼 -->
+        <ImageButton
+            android:id="@+id/leftButton"
+            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/baseline_arrow_left_24"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent"/>
+
+        <!--  년 월 표시  -->
+        <TextView
+            android:id="@+id/monthYearText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2024 11월"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <!-- 다음 달로 이동 버튼 -->
+        <ImageButton
+            android:id="@+id/rightButton"
+            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/baseline_arrow_right_24"
+            android:scaleType="fitXY"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+
+    <!-- 캘린더 -->
+    <GridView
+        android:id="@+id/calendarGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:numColumns="7"
+        android:gravity="center"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        android:layout_margin="15dp"/>
+
+</LinearLayout>

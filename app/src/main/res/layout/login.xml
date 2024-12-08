@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="로그인"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 후"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="WA!의 다양한 기능을\n제한 없이 사용해 보세요."
+        android:textSize="24sp"/>
+<!--아이디 입력 창-->
+    <EditText
+        android:id="@+id/login_id"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:hint="아이디"
+        android:textSize="12sp"
+        android:textColorHint="#80000000"
+        android:background="@drawable/graybox"/>
+<!--비밀번호 입력 창-->
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:hint="비밀번호"
+        android:textSize="12sp"
+        android:textColorHint="#80000000"
+        android:inputType="textPassword"
+        android:background="@drawable/graybox"/>
+<!--로그인 버튼-->
+    <android.widget.Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        android:text="로그인"
+        android:textSize="17sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/orangebox"/>
+<!--회원가입 페이지로 이동 버튼-->
+    <android.widget.Button
+        android:id="@+id/login_joinButton"
+        android:layout_width="350dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="회원가입"
+        android:textSize="14sp"
+        android:textColor="#80000000"
+        android:background="#00ff0000"/>
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="25dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+<!--일정 날짜-->
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginBottom="16dp"
+            android:text="11월 16일 토요일"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            />
+<!--일정 추가 버튼-->
+        <ImageButton
+            android:id="@+id/list_add_Button"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="190dp"
+            android:src="@drawable/baseline_add_circle_24"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="@drawable/orangebox"></View>
+
+    <!-- 일정 리스트 -->
+    <ScrollView
+        android:id="@+id/popup_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fillViewport="true">
+
+        <ListView
+            android:id="@+id/popup_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingBottom="8dp"/>
+    </ScrollView>
+
+
+</LinearLayout>

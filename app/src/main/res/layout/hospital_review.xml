@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title" />
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:layout_centerHorizontal="true">
+
+        <ImageButton
+            android:id="@+id/review_return_hospital"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/review_return_hospital"
+            android:text="방문 후기 작성"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+<!--동물 병원 이름-->
+        <TextView
+            android:id="@+id/hospital_review_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/review_return_hospital"
+            android:layout_marginTop="15dp"
+            android:text="동물병원 이름"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <ScrollView
+            android:id="@+id/hospital_review_scroll"
+            android:layout_width="375dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="10dp"
+            android:fillViewport="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/hospital_review_name"
+            android:scrollbars="none">
+
+            <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+<!--후기 내용 입력-->
+            <EditText
+                android:id="@+id/hospital_review_write"
+                android:layout_width="375dp"
+                android:layout_height="wrap_content"
+                android:minLines="7"
+                android:background="@drawable/graybox"
+                android:hint="내용을 입력하세요."
+                android:textSize="17dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="10dp"
+                android:gravity="top" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hospital_review_write"
+                android:layout_marginTop="15dp"
+                android:text="별점"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <!--별점 등록-->
+            <RatingBar
+                android:id="@+id/hospital_Review_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hospital_review_write"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="37dp"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:isIndicator="false"
+                android:progressTint="#ff5e00"
+                android:progressBackgroundTint="#B5B5B3"
+                style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+        <!--후기 등록 버튼-->
+        <android.widget.Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:text="후기 등록"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:background="@drawable/orangebox"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
