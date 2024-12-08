@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home_main">
+    android:id="@+id/drawer_layout">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -13,15 +13,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/title"/>
-<!--카테고리 창 버튼-->
+
+        <!--카테고리 창 버튼-->
         <ImageButton
             android:id="@+id/home_categoryB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
-            android:src="@drawable/baseline_menu_24"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_menu_24" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/home_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:visibility="visible" />
+
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -34,7 +43,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="130dp"
                 android:background="@drawable/graybox"/>
-<!--동물 사진-->
+            <!--동물 사진-->
             <ImageView
                 android:id="@+id/home_petphoto"
                 android:layout_width="150dp"
@@ -43,7 +52,7 @@
                 android:layout_marginLeft="15dp"
                 android:scaleType="fitXY"
                 android:visibility="invisible"/>
-<!--동물 이름-->
+            <!--동물 이름-->
             <TextView
                 android:id="@+id/home_petname"
                 android:layout_width="180dp"
@@ -55,7 +64,7 @@
                 android:gravity="center"
                 android:background="@drawable/textbox"
                 android:visibility="invisible"/>
-<!--동물 종-->
+            <!--동물 종-->
             <TextView
                 android:id="@+id/home_petspecies"
                 android:layout_width="180dp"
@@ -67,7 +76,7 @@
                 android:gravity="center"
                 android:background="@drawable/textbox"
                 android:visibility="invisible"/>
-<!--동물 나이-->
+            <!--동물 나이-->
             <TextView
                 android:id="@+id/home_petage"
                 android:layout_width="180dp"
@@ -104,7 +113,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="175dp"
                 android:text="새로운 정보를\n등록해 보세요."/>
-<!--신규 동물 등록 버튼-->
+            <!--신규 동물 등록 버튼-->
             <ImageButton
                 android:id="@+id/homeplusB"
                 android:layout_width="40dp"
@@ -140,7 +149,7 @@
                 android:textColor="#FF5e00"
                 android:textStyle="bold"
                 android:textSize="20dp"/>
-<!--캘린더 이동 버튼-->
+            <!--캘린더 이동 버튼-->
             <ImageButton
                 android:id="@+id/home_calender"
                 android:layout_width="wrap_content"
@@ -156,7 +165,7 @@
                 android:layout_height="210dp"
                 android:layout_marginTop="380dp"
                 android:fillViewport="true">
-<!--투두리스트 리스트뷰-->
+                <!--투두리스트 리스트뷰-->
                 <ListView
                     android:id="@+id/home_listview"
                     android:layout_width="match_parent"
@@ -170,10 +179,10 @@
         </FrameLayout>
 
     </FrameLayout>
-<!--카테고리창-->
+    <!--카테고리창-->
     <LinearLayout
         android:layout_width="160dp"
-        android:layout_height="match_parent"
+        android:layout_height="650dp"
         android:layout_gravity="start"
         android:orientation="vertical"
         android:background="#FFFFFF">
@@ -205,7 +214,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:text="병원 정보"/>
-<!--병원 페이지 이동 버튼-->
+            <!--병원 페이지 이동 버튼-->
             <Button
                 android:id="@+id/hospital_category"
                 android:layout_width="100dp"
@@ -225,7 +234,7 @@
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/baseline_food_bank_24"/>
-<!--식품 페이지 이동 버튼-->
+            <!--식품 페이지 이동 버튼-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -259,7 +268,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:text="실종 동물"/>
-<!--동물 실종 페이지 이동 버튼-->
+            <!--동물 실종 페이지 이동 버튼-->
             <Button
                 android:id="@+id/missing_category"
                 android:layout_width="100dp"
@@ -286,7 +295,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:text="캘린더"/>
-<!--달력 이동 버튼-->
+            <!--달력 이동 버튼-->
             <Button
                 android:id="@+id/calender_category"
                 android:layout_width="100dp"

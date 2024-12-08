@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp">
-<!--검색창-->
+        <!--검색창-->
         <EditText
             android:id="@+id/quetion_search"
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:layout_below="@+id/quetion_search"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true">
-<!--전체 게시판으로 돌아가기 버튼-->
+            <!--전체 게시판으로 돌아가기 버튼-->
             <ImageButton
                 android:id="@+id/question_return_board"
                 android:layout_width="24dp"
@@ -54,7 +54,7 @@
                 android:text="질문 게시판"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-<!--질문 리스트뷰-->
+            <!--질문 리스트뷰-->
             <ScrollView
                 android:id="@+id/question_scroll"
                 android:layout_width="373dp"

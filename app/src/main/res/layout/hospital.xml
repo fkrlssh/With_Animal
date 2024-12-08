@@ -39,7 +39,7 @@
             android:layout_centerHorizontal="true">
 <!--홈화면 이동 버튼-->
             <ImageButton
-                android:id="@+id/hospital_return_main"
+                android:id="@+id/hospital_return_home"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="5dp"
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:layout_toRightOf="@+id/hospital_return_main"
+                android:layout_toRightOf="@+id/hospital_return_home"
                 android:text="병원 정보"
                 android:textSize="20sp"
                 android:textStyle="bold" />

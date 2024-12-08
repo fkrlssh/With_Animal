@@ -16,7 +16,7 @@
         android:layout_height="580dp"
         android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true">
-<!--검색팡-->
+        <!--검색팡-->
         <EditText
             android:id="@+id/board_search"
             android:layout_width="match_parent"
@@ -38,37 +38,37 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_below="@id/board_search">
-<!--질문 게시판 이동 버튼-->
-        <android.widget.Button
-            android:id="@+id/board_questionB"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/orangebox"
-            android:text="질문 게시판"
-            android:textSize="15sp"
-            android:textColor="@color/white" />
-<!--꿀팁 게시판 이동 버튼-->
-        <android.widget.Button
-            android:id="@+id/board_tipB"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/orangebox"
-            android:text="꿀팁 게시판"
-            android:textSize="15sp"
-            android:textColor="@color/white"/>
+            <!--질문 게시판 이동 버튼-->
+            <android.widget.Button
+                android:id="@+id/board_questionB"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/orangebox"
+                android:text="질문 게시판"
+                android:textSize="15sp"
+                android:textColor="@color/white" />
+            <!--꿀팁 게시판 이동 버튼-->
+            <android.widget.Button
+                android:id="@+id/board_tipB"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/orangebox"
+                android:text="꿀팁 게시판"
+                android:textSize="15sp"
+                android:textColor="@color/white"/>
 
-            </LinearLayout>
+        </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="90dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp">
 
-                <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 게시판"
@@ -76,7 +76,7 @@
                 android:textStyle="bold"/>
 
             <!--글쓰기 버튼-->
-                <android.widget.Button
+            <android.widget.Button
                 android:id="@+id/board_writeB"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
@@ -85,36 +85,17 @@
                 android:textColor="@color/white"
                 android:layout_alignParentRight="true" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/board_writeB"
-                    android:layout_marginTop="10dp">
 
-                    <ScrollView
-                        android:id="@+id/board_scroll"
-                        android:layout_width="375dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:fillViewport="true">
+            <ListView
+                android:id="@+id/board_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:scrollbars="none">
+            </ListView>
 
-                        <!--게시판 리스트뷰-->
-                        <ListView
-                            android:id="@+id/borad_listview"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scrollbars="none">
-                        </ListView>
-                    </ScrollView>
 
-                </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>
-
-
-
-
-
-
 </RelativeLayout>

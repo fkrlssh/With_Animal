@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,33 +7,39 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/NavigationView"
-        android:layout_width="375dp"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:visibility="visible"
-        android:background="@drawable/graybox"
-        app:itemIconTint="#FF5E00"
-        app:itemPaddingBottom="9dp"
-        app:itemPaddingTop="8dp"
-        app:itemBackground="@android:color/transparent"
-        app:itemTextAppearanceActiveBoldEnabled="true"
-        app:itemActiveIndicatorStyle="@android:color/transparent"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigation_menu"/>
 
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:visibility="visible"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation_main" />
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/NavigationView"
+            android:layout_width="375dp"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:visibility="visible"
+            android:background="@drawable/graybox"
+            app:itemIconTint="#FF5E00"
+            app:itemPaddingBottom="9dp"
+            app:itemPaddingTop="8dp"
+            app:itemBackground="@android:color/transparent"
+            app:itemTextAppearanceActiveBoldEnabled="true"
+            app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/navigation_menu"/>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:visibility="visible"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation_main" />
+
+    </RelativeLayout>
+
+</LinearLayout>

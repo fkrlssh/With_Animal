@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
-<!--댓글 작성자 아이디-->
+        <!--댓글 작성자 아이디-->
         <TextView
             android:id="@+id/comment_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="작성자 아이디"
             android:textStyle="bold"/>
-<!--댓글 작성 날짜-->
+        <!--댓글 작성 날짜-->
         <TextView
             android:id="@+id/comment_date"
             android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
             android:layout_alignParentRight="true"
             android:text="24/11/05"
             android:textColor="#888888"/>
-<!--댓글 내용-->
+        <!--댓글 내용-->
         <TextView
             android:id="@+id/comment_text"
             android:layout_width="match_parent"

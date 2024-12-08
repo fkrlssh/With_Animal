@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp">
-<!--검색창-->
+        <!--검색창-->
         <EditText
             android:id="@+id/food_search"
             android:layout_width="match_parent"
@@ -37,9 +37,9 @@
             android:layout_below="@+id/food_search"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true">
-<!--홈 이동 버튼-->
+            <!--홈 이동 버튼-->
             <ImageButton
-                android:id="@+id/food_return_main"
+                android:id="@+id/food_return_home"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="5dp"
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:layout_toRightOf="@+id/food_return_main"
+                android:layout_toRightOf="@+id/food_return_home"
                 android:text="음식 정보"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -65,7 +65,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:layout_toRightOf="@+id/food_return_main"
+                android:layout_toRightOf="@+id/food_return_home"
                 android:background="@drawable/orangebox"/>
 
             <TextView
@@ -86,14 +86,14 @@
                 android:layout_width="375dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/food_return_main"
+                android:layout_below="@+id/food_return_home"
                 android:fillViewport="true">
 
-<!--섭취 유무 리스트-->
-                    <ListView
-                        android:id="@+id/hospital_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                <!--섭취 유무 리스트-->
+                <ListView
+                    android:id="@+id/foodeatlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
             </ScrollView>
         </RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top">
+
+    <RelativeLayout
+        android:layout_width="375dp"
+        android:layout_height="195dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/graybox">
+
+        <!-- 동물 사진 -->
+        <ImageView
+            android:id="@+id/pet_photo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:scaleType="fitXY"
+            android:visibility="visible" />
+
+        <!-- 동물 이름 -->
+        <TextView
+            android:id="@+id/pet_name"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@id/pet_photo"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="이름"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+        <!-- 동물 종 -->
+        <TextView
+            android:id="@+id/pet_species"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/pet_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/pet_photo"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="종"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+        <!-- 동물 나이 -->
+        <TextView
+            android:id="@+id/pet_age"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/pet_species"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/pet_photo"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="나이"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+        <!-- 동물 성별 -->
+        <TextView
+            android:id="@+id/pet_gender"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/pet_age"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/pet_photo"
+            android:background="@drawable/textbox"
+            android:gravity="center"
+            android:text="성별"
+            android:textSize="15sp"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</LinearLayout>

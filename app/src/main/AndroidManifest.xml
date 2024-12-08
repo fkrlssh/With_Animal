@@ -33,8 +33,59 @@
             android:label="회원가입"
             android:exported="false" />
 
+        <activity
+            android:name=".CalenderActivity"
+            android:label="CalendarActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".CalenderAddActivity"
+            android:label="CalenderAddActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".PetRegisterActivity"
+            android:label="PetRegisterActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".HospitalActivity"
+            android:label="HospitalActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".MissingActivity"
+            android:label="MissingActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".foodActivity"
+            android:label="foodActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BoardWriteActivity"
+            android:label="BoardWriteActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BoardQuestionActivity"
+            android:label="BoardQuestionActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BoardTipActivity"
+            android:label="BoardTipActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BoardTextPageActivity"
+            android:label="BoardTextPageActivity"
+            android:exported="true" />
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
