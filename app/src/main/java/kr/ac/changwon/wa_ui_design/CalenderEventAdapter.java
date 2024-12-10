@@ -41,10 +41,20 @@ public class CalenderEventAdapter extends BaseAdapter {
 
         TextView eventTime = convertView.findViewById(R.id.eventTime);
         TextView eventTitle = convertView.findViewById(R.id.eventTitle);
+        TextView eventAlarm = convertView.findViewById(R.id.eventAlarm);
+        TextView eventText = convertView.findViewById(R.id.eventText);
 
         String[] eventDetails = events.get(position).split("\n");
         if (eventDetails.length > 0) eventTime.setText(eventDetails[0]); // 시간
         if (eventDetails.length > 1) eventTitle.setText(eventDetails[1]); // 제목
+        if (eventDetails.length > 3) eventAlarm.setText(eventDetails[3]); // 알람
+
+        if (eventDetails.length > 2 && !eventDetails[2].trim().isEmpty()) { //자세한 내용
+            eventText.setText(eventDetails[2]);
+            eventText.setVisibility(View.VISIBLE);
+        } else {
+            eventText.setVisibility(View.GONE);
+        }
 
         return convertView;
     }

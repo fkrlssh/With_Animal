@@ -108,37 +108,6 @@
 
             </LinearLayout>
 
-
-"
-
-            <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp">
-                <!--사진 등록 버튼-->
-                <android.widget.Button
-                    android:id="@+id/board_write_add_photo"
-                    android:layout_width="80dp"
-                    android:layout_height="30dp"
-                    android:layout_marginRight="7dp"
-                    android:layout_gravity="center_vertical"
-                    android:text="사진 등록"
-                    android:textSize="15sp"
-                    android:background="@drawable/graybox"
-                    android:textStyle="bold" />
-                <!--사진 파일 이름-->
-                <TextView
-                    android:id="@+id/board_write_photo_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="image.file.name"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:layout_gravity="center_vertical"/>
-
-            </LinearLayout>
-
             <TextView
                 android:layout_width="375dp"
                 android:layout_height="wrap_content"

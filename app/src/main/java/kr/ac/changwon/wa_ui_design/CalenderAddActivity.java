@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -51,6 +52,18 @@ public class CalenderAddActivity extends AppCompatActivity {
             int minute = timePicker.getCurrentMinute();
             String memo = memoInput.getText().toString();
             String alarm = alarmInput.getSelectedItem().toString();
+
+
+            if (title.isEmpty()) {
+                titleInput.setError(null);
+                Toast.makeText(this, "제목을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                titleInput.requestFocus();
+                return;
+            }
+
+            if (memo.isEmpty()) {
+                memo = " ";
+            }
 
             String time = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
             String eventDetails = time + "\n" + title + "\n" + memo + "\n" + alarm;

@@ -185,7 +185,7 @@
         android:layout_height="650dp"
         android:layout_gravity="start"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="#FEF7FF">
 
         <TextView
             android:layout_width="240dp"
