@@ -2,25 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="@drawable/round_popup">
 
     <RelativeLayout
         android:layout_width="375dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/graybox">
-<!--팝업창 닫기 버튼-->
+        android:layout_centerInParent="true">
+        <!--팝업창 닫기 버튼-->
         <ImageButton
             android:id="@+id/xquiz"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/closebutton"
-            android:scaleType="fitXY"
+            android:layout_width="29dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="11dp"
             android:background="@android:color/transparent"
-            android:layout_alignParentRight="true"> </ImageButton>
-<!--질문-->
+            android:scaleType="fitXY"
+            android:src="@drawable/closebutton"></ImageButton>
+        <!--질문-->
         <TextView
             android:id="@+id/quiz"
             android:layout_width="330dp"
@@ -31,13 +30,14 @@
             android:padding="10dp"></TextView>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="15dp"
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/quiz">
-<!--퀴즈 선택지 O-->
+            <!--퀴즈 선택지 O-->
             <android.widget.Button
                 android:id="@+id/rightB"
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:background="@drawable/orangebox"/>
-<!--퀴즈 선택지 X-->
+            <!--퀴즈 선택지 X-->
             <android.widget.Button
                 android:id="@+id/wrongB"
                 android:layout_width="match_parent"
