@@ -5,6 +5,7 @@ public class Pet {
     private String species;
     private String age;
     private String gender;
+    private String photo;
 
     public Pet(String name, String species, String age, String gender) {
         this.name = name;
@@ -27,5 +28,11 @@ public class Pet {
 
     public String getGender() {
         return gender;
+    }
+
+    public String getPhoto(){return photo;}
+
+    public void setPhoto(String photo){
+        this.photo = photo;
     }
 }

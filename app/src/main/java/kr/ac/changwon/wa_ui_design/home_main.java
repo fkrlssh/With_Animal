@@ -132,9 +132,11 @@ public class home_main extends Fragment {
         }
     }
 
-    public void addPetToViewPager(String petName, String petSpecies, String petAge, String gender) {
+    public void addPetToViewPager(String petName, String petSpecies, String petAge, String gender, String photoPath) {
         Pet newPet = new Pet(petName, petSpecies, petAge, gender);
+        newPet.setPhoto(photoPath); // 사진 경로 추가
         petList.add(newPet);
         petPagerAdapter.notifyDataSetChanged();
     }
+
 }

@@ -103,12 +103,15 @@ public class MainActivity extends AppCompatActivity {
                 String petAge = intent.getStringExtra("petAge");
                 String gender = intent.getStringExtra("gender");
 
-                if (petName != null && petSpecies != null && petAge != null && gender != null) {
+                String photoPath = intent.getStringExtra("photoPath");
+
+                if (petName != null && petSpecies != null && petAge != null && gender != null && photoPath != null) {
                     home_main fragment = (home_main) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
                     if (fragment != null) {
-                        fragment.addPetToViewPager(petName, petSpecies, petAge, gender);
+                        fragment.addPetToViewPager(petName, petSpecies, petAge, gender, photoPath); // 수정된 메서드 호출
                     }
                 }
+
             }
         }
     }

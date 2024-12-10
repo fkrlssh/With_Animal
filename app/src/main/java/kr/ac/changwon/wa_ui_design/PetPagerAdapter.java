@@ -1,6 +1,7 @@
 package kr.ac.changwon.wa_ui_design;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,10 @@ public class PetPagerAdapter extends PagerAdapter {
         TextView petSpecies = view.findViewById(R.id.pet_species);
         TextView petAge = view.findViewById(R.id.pet_age);
         TextView petGender = view.findViewById(R.id.pet_gender);
+        ImageView petPhoto = view.findViewById(R.id.pet_photo);
+        if (pet.getPhoto() != null) {
+            petPhoto.setImageURI(Uri.parse(pet.getPhoto()));
+        }
 
         // Pet 정보 설정
         petName.setText(pet.getName());
