@@ -122,7 +122,7 @@
             android:scaleType="fitXY"
             android:background="@android:color/transparent"/>
 
-        <EditText
+        <Spinner
             android:id="@+id/plan_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

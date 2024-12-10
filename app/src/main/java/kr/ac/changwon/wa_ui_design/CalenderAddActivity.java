@@ -3,8 +3,10 @@ package kr.ac.changwon.wa_ui_design;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ public class CalenderAddActivity extends AppCompatActivity {
         EditText titleInput = findViewById(R.id.plan_title);
         TimePicker timePicker = findViewById(R.id.plan_time_picker);
         EditText memoInput = findViewById(R.id.plan_memo);
-        EditText alarmInput = findViewById(R.id.plan_alarm);
+        Spinner alarmInput = findViewById(R.id.plan_alarm);
         Button addButton = findViewById(R.id.add_list);
         Button cancelButton = findViewById(R.id.add_list_cancel);
 
@@ -32,13 +34,23 @@ public class CalenderAddActivity extends AppCompatActivity {
         Date selectedDate = new Date(dateMillis);
 
         timePicker.setIs24HourView(true);
+        String[] items = {"5분 전", "10분 전", "20분 전", "30분 전"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.calender_spinner_item,
+                items
+        );
+
+        adapter.setDropDownViewResource(R.layout.calender_spinner_dropdown_item);
+        alarmInput.setAdapter(adapter);
 
         addButton.setOnClickListener(v -> {
             String title = titleInput.getText().toString();
             int hour = timePicker.getCurrentHour();
             int minute = timePicker.getCurrentMinute();
             String memo = memoInput.getText().toString();
-            String alarm = alarmInput.getText().toString();
+            String alarm = alarmInput.getSelectedItem().toString();
 
             String time = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
             String eventDetails = time + "\n" + title + "\n" + memo + "\n" + alarm;
