@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="110dp"
     android:background="@drawable/graybox"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:layout_margin="5dp">
 
     <ImageView
         android:id="@+id/missing_list_photo"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
+        android:layout_above="@id/missing_list_species"
         android:text="이름: "
         android:textSize="20dp"
         android:textStyle="bold"/>
-<!--실종 동물 이름-->
+    <!--실종 동물 이름-->
     <TextView
         android:id="@+id/missing_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
+        android:layout_above="@id/missing_list_species"
         android:layout_marginLeft="50dp"
         android:text="초코"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
-        android:layout_below="@+id/missing_list_name"
+        android:layout_centerVertical="true"
         android:text="종: "
         android:textSize="20dp"
         android:textStyle="bold"/>
-<!--실종 동물 종-->
+    <!--실종 동물 종-->
     <TextView
         android:id="@+id/missing_list_species"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
-        android:layout_below="@+id/missing_list_name"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"
         android:text="푸들"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +61,7 @@
         android:text="실종 날짜: "
         android:textSize="20dp"
         android:textStyle="bold"/>
-<!--실종 날짜-->
+    <!--실종 날짜-->
     <TextView
         android:id="@+id/missing_list_date"
         android:layout_width="wrap_content"
@@ -64,6 +70,7 @@
         android:layout_below="@+id/missing_list_species"
         android:layout_marginLeft="90dp"
         android:text="24/01/01"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

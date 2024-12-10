@@ -1,6 +1,8 @@
 package kr.ac.changwon.wa_ui_design;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
@@ -122,6 +124,7 @@ public class CalenderActivity extends AppCompatActivity {
         builder.setNegativeButton("닫기", (dialog, which) -> dialog.dismiss());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         listAddButton.setOnClickListener(v -> {
             // 팝업창 닫기
