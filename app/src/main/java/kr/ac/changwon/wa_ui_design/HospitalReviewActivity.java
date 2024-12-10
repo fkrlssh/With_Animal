@@ -20,38 +20,48 @@ public class HospitalReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_review);
 
-        ImageButton reivewReturnHospital = findViewById(R.id.review_return_hospital);
-        reivewReturnHospital.setOnClickListener(new View.OnClickListener() {
+        ImageButton reviewReturnHospital = findViewById(R.id.review_return_hospital);
+        reviewReturnHospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HospitalReviewActivity.this, HospitalPageActivity.class);
-                startActivity(intent);
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
 
         String hospitalName = getIntent().getStringExtra("HOSPITAL_NAME");
+        String userId = getIntent().getStringExtra("USER_ID"); // id
         TextView hospitalNameTextView = findViewById(R.id.hospital_review_name);
         hospitalNameTextView.setText(hospitalName);
 
-        Button submitButton = findViewById(R.id.hospital_review_add);
-        submitButton.setOnClickListener(view -> {
-            EditText reviewText = findViewById(R.id.hospital_review_write);
-            RatingBar ratingBar = findViewById(R.id.hospital_Review_rating);
+        Button hospitalReviewAdd = findViewById(R.id.hospital_review_add);
+        hospitalReviewAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText reviewText = findViewById(R.id.hospital_review_write);
+                RatingBar ratingBar = findViewById(R.id.hospital_Review_rating);
 
-            String reviewContent = reviewText.getText().toString();
-            float rating = ratingBar.getRating();
-            String reviewDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+                String reviewContent = reviewText.getText().toString().trim();
 
-            // 데이터 전달
-            Intent intent = new Intent();
-            intent.putExtra("HOSPITAL_NAME", hospitalName); // 병원 이름도 결과로 반환 가능
-            intent.putExtra("REVIEW_TEXT", reviewContent);
-            intent.putExtra("REVIEW_RATING", rating);
-            intent.putExtra("REVIEW_DATE", reviewDate);
+                if (reviewContent.isEmpty()) {
+                    reviewText.setError("내용을 입력하세요.");
+                    reviewText.requestFocus();
+                    return;
+                }
 
-            setResult(RESULT_OK, intent);
-            finish();
+                float rating = ratingBar.getRating();
+                String reviewDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+
+                Intent intent = new Intent();
+                intent.putExtra("REVIEW_ID", userId); // id
+                intent.putExtra("HOSPITAL_NAME", hospitalName);
+                intent.putExtra("REVIEW_TEXT", reviewContent);
+                intent.putExtra("REVIEW_RATING", rating);
+                intent.putExtra("REVIEW_DATE", reviewDate);
+
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
     }
 

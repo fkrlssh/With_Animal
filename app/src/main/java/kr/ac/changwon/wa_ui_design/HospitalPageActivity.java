@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HospitalPageActivity extends AppCompatActivity  implements OnMapReadyCallback {
     private MapView mapView;
     private HospitalReviewAdapter reviewAdapter;
@@ -24,18 +28,31 @@ public class HospitalPageActivity extends AppCompatActivity  implements OnMapRea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_page);
 
-        String userId = getIntent().getStringExtra("USER_ID");
+        final String userId = getIntent().getStringExtra("USER_ID") != null ?
+                getIntent().getStringExtra("USER_ID") : "익명"; // 일단 id 부분을 익명으로 표시
+
         String hospitalName = getIntent().getStringExtra("HOSPITAL_NAME");
+        String hospitalAddress = getIntent().getStringExtra("HOSPITAL_ADDRESS");
         float distance = getIntent().getFloatExtra("HOSPITAL_DISTANCE", 0.0f);
+        float rating = getIntent().getFloatExtra("HOSPITAL_RATING", 0.0f);
+
 
         TextView hospitalNameTextView = findViewById(R.id.hospital_page_name);
+        TextView hospitalAddressTextView = findViewById(R.id.hospital_page_place);
         TextView hospitalDistanceTextView = findViewById(R.id.hospital_page_distance);
+        TextView hospitalRatingTextView = findViewById(R.id.hospital_page_rating);
+
+        ListView reviewListView = findViewById(R.id.hospital_page_list);
+        List<HospitalReviewItem> reviewList = new ArrayList<>();
+        reviewAdapter = new HospitalReviewAdapter(this, reviewList);
+        reviewListView.setAdapter(reviewAdapter);
 
         hospitalNameTextView.setText(hospitalName);
+        hospitalAddressTextView.setText(hospitalAddress);
         hospitalDistanceTextView.setText(String.format("%.1f", distance / 1000) + " km");
+        hospitalRatingTextView.setText(String.format("%.1f", rating));
 
 
-        // 돌아가기 버튼 설정
         ImageButton hospitalReturnMain = findViewById(R.id.hospital_page_return_hospital);
         hospitalReturnMain.setOnClickListener(view -> {
             Intent intent = new Intent(HospitalPageActivity.this, HospitalActivity.class);
@@ -43,12 +60,11 @@ public class HospitalPageActivity extends AppCompatActivity  implements OnMapRea
             finish();
         });
 
-
         Button reviewButton = findViewById(R.id.hospital_review_write);
         reviewButton.setOnClickListener(view -> {
             Intent intent = new Intent(HospitalPageActivity.this, HospitalReviewActivity.class);
-            intent.putExtra("HOSPITAL_NAME", hospitalName); // 병원 이름 전달
-            startActivity(intent);
+            intent.putExtra("USER_ID", userId);
+            startActivityForResult(intent, 100);
         });
 
 
@@ -56,6 +72,18 @@ public class HospitalPageActivity extends AppCompatActivity  implements OnMapRea
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+    }
+
+    private float calculateAverageRating(List<HospitalReviewItem> reviewList) { // 리뷰들 별점 평균
+        if (reviewList == null || reviewList.isEmpty()) {
+            return 0.0f; // 리뷰가 없으면 0점 반환
+        }
+
+        float sum = 0;
+        for (HospitalReviewItem review : reviewList) {
+            sum += review.getReviewRating();
+        }
+        return sum / reviewList.size();
     }
 
     @Override
@@ -68,6 +96,12 @@ public class HospitalPageActivity extends AppCompatActivity  implements OnMapRea
             float reviewRating = data.getFloatExtra("REVIEW_RATING", 0);
             String reviewDate = data.getStringExtra("REVIEW_DATE");
 
+            HospitalReviewItem newReview = new HospitalReviewItem(reviewId, reviewText, reviewRating, reviewDate);
+            reviewAdapter.addReview(newReview);
+
+            float averageRating = calculateAverageRating(reviewAdapter.getReviewList());
+            TextView hospitalRatingTextView = findViewById(R.id.hospital_page_rating);
+            hospitalRatingTextView.setText(String.format("%.1f", averageRating));
         }
     }
 

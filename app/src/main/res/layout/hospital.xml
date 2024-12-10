@@ -22,7 +22,7 @@
             android:hint="검색어를 입력하세요."
             android:textSize="15sp"
             android:paddingLeft="40dp"
-            android:background="@drawable/graybox"/>
+            android:background="@drawable/graybox" />
 
         <ImageView
             android:layout_width="30dp"
@@ -57,15 +57,16 @@
 <!--정렬 스피너 ex. 거리순, 별점순-->
             <Spinner
                 android:id="@+id/hospital_spinner"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"/>
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:spinnerMode="dropdown"/>
 
             <ScrollView
                 android:id="@+id/hospital_scroll"
                 android:layout_width="375dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_below="@+id/hospital_spinner"
                 android:fillViewport="true">
 <!--병원 리스트뷰-->

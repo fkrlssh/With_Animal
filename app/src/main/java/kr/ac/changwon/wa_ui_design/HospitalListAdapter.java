@@ -44,12 +44,20 @@ public class HospitalListAdapter extends BaseAdapter {
         TextView nameTextView = convertView.findViewById(R.id.hospital_title);
         TextView addressTextView = convertView.findViewById(R.id.hospital_text);
         TextView distanceTextView = convertView.findViewById(R.id.hospital_distance);
+        TextView ratingTextView = convertView.findViewById(R.id.hospital_rating); // 평균 별점 표시 추가
 
         nameTextView.setText(hospital.getName());
         addressTextView.setText(hospital.getAddress());
         distanceTextView.setText(String.format("%.1f km", hospital.getDistance() / 1000));
-
+        ratingTextView.setText(String.format("%.1f", hospital.getAverageRating())); // 평균 별점 표시
 
         return convertView;
     }
+
+
+    public void updateList(List<Hospital> newHospitalList) {
+        this.hospitalList = newHospitalList;
+        notifyDataSetChanged();
+    }
+
 }

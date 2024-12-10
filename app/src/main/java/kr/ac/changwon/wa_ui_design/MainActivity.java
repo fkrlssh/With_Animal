@@ -1,11 +1,16 @@
 package kr.ac.changwon.wa_ui_design;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Fragment homeF;
     Fragment boardF;
     Fragment notificationF;
+
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 return loadFragment(fragment);
             }
         });
+
+        requestPermissionsIfNeeded();
     }
 
     boolean loadFragment(Fragment fragment) {
@@ -103,4 +112,71 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSIONS_REQUEST_CODE) {
+            StringBuilder deniedPermissions = new StringBuilder();
+            boolean allGranted = true;
+
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false;
+                    deniedPermissions.append(permissions[i]).append("\n");
+                }
+            }
+
+            if (allGranted) {
+                Toast.makeText(this, "모든 권한이 허용되었습니다.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "일부 권한이 거부되었습니다. 앱의 일부 기능이 제한될 수 있습니다.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+    private void requestPermissionsIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13
+            String[] permissions = {
+                    android.Manifest.permission.READ_MEDIA_IMAGES, // 이미지 읽기 권한
+                    android.Manifest.permission.ACCESS_FINE_LOCATION, // 고정밀 위치 권한
+                    android.Manifest.permission.POST_NOTIFICATIONS // 알림 권한
+            };
+
+            boolean allGranted = true;
+            for (String permission : permissions) {
+                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false;
+                    break;
+                }
+            }
+
+            if (!allGranted) {
+                ActivityCompat.requestPermissions(this, permissions, PERMISSIONS_REQUEST_CODE);
+            }
+        }
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // Android 6
+            String[] permissions = {
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE, // 기존 저장소 읽기 권한
+                    android.Manifest.permission.ACCESS_FINE_LOCATION // 고정밀 위치 권한
+            };
+
+            boolean allGranted = true;
+            for (String permission : permissions) {
+                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false;
+                    break;
+                }
+            }
+
+            if (!allGranted) {
+                ActivityCompat.requestPermissions(this, permissions, PERMISSIONS_REQUEST_CODE);
+            }
+        }
+    }
+
+
+
 }
