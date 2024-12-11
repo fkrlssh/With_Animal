@@ -68,7 +68,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/graybox"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="200dp"
