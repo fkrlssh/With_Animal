@@ -151,12 +151,20 @@ public class MissingWriteActivity extends AppCompatActivity {
         int month = selectedDate.get(Calendar.MONTH);
         int day = selectedDate.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, month1, dayOfMonth) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePickerStyle, (view, year1, month1, dayOfMonth) -> {
             selectedDate.set(year1, month1, dayOfMonth);
             setTodayAsDefaultDate(); // 선택한 날짜 반영
         }, year, month, day);
 
+        datePickerDialog.setOnShowListener(dialog -> {
+            Button positiveButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE);
+            positiveButton.setTextColor(getResources().getColor(R.color.black)); // 원하는 색상으로 설정
+            Button negativeButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE);
+            negativeButton.setTextColor(getResources().getColor(R.color.black)); // 원하는 색상으로 설정
+        });
+
         datePickerDialog.show();
+
     }
 
     @Override
