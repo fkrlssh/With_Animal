@@ -77,10 +77,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Intent intent = getIntent();
+
         if (intent != null) {
+            // Intent로 전달된 추가 데이터를 확인하고 처리
             String fragmentToLoad = intent.getStringExtra("fragmentToLoad");
 
             if ("boardFragment".equals(fragmentToLoad)) {
+                // 게시판 관련 데이터 처리
                 String boardTitle = intent.getStringExtra("boardTitle");
                 String boardtext = intent.getStringExtra("boardtext");
                 String boardDate = intent.getStringExtra("boardDate");
@@ -89,15 +92,18 @@ public class MainActivity extends AppCompatActivity {
                 boolean isTipBoard = intent.getBooleanExtra("isTipBoard", false);
 
                 if (boardTitle != null && boardtext != null) {
-                    board_main fragment = (board_main) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                    // 게시판 프래그먼트에 데이터 추가
+                    board_main fragment = (board_main) getSupportFragmentManager()
+                            .findFragmentById(R.id.fragmentContainerView);
                     if (fragment != null) {
                         fragment.addBoardList(boardTitle, boardtext, boardDate, isQuestionBoard, isTipBoard);
                     }
                 }
 
-                loadFragment(boardF);
+                loadFragment(boardF); // 게시판 프래그먼트 로드
                 bottomNavigationView.setSelectedItemId(R.id.board_Fragment);
             } else {
+                // Home Fragment와 관련된 Intent 처리
                 String petName = intent.getStringExtra("petName");
                 String petSpecies = intent.getStringExtra("petSpecies");
                 String petAge = intent.getStringExtra("petAge");
@@ -106,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 String photoPath = intent.getStringExtra("photoPath");
 
                 if (petName != null && petSpecies != null && petAge != null && gender != null && photoPath != null) {
-                    home_main fragment = (home_main) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+                    home_main fragment = (home_main) getSupportFragmentManager()
+                            .findFragmentById(R.id.fragmentContainerView);
                     if (fragment != null) {
-                        fragment.addPetToViewPager(petName, petSpecies, petAge, gender, photoPath); // 수정된 메서드 호출
+                        fragment.addPetToViewPager(petName, petSpecies, petAge, gender, photoPath);
                     }
                 }
-
             }
         }
     }

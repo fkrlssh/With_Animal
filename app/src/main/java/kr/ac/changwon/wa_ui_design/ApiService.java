@@ -22,6 +22,11 @@ public interface ApiService {
     @GET("/pets")
     Call<List<Pet>> getPets(@Query("user_id") String userId);
 
+    // 게시물 등록 엔드포인트
+    @POST("/board/posts") // Flask 서버의 '/board/posts' 엔드포인트와 매핑
+    Call<Void> createBoardPost(@Body BoardPost boardPost);
 
-
+    // 게시물 조회 엔드포인트 (옵션)
+    @GET("/board/posts")
+    Call<List<BoardPost>> getPosts();
 }

@@ -1,10 +1,8 @@
 package kr.ac.changwon.wa_ui_design;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,9 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BoardWriteActivity extends AppCompatActivity {
     private RadioGroup boardWriteRadioGroup;
@@ -30,9 +32,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         setContentView(R.layout.board_write);
 
         ImageButton boardWriteReturnBoard = findViewById(R.id.board_write_return_board); // 글쓰기 창 나가기
-        boardWriteReturnBoard.setOnClickListener(view -> {
-            finish();
-        });
+        boardWriteReturnBoard.setOnClickListener(view -> finish());
 
         EditText boardWriteTitle = findViewById(R.id.board_write_title);
         EditText boardWriteText = findViewById(R.id.board_write_text);
@@ -41,45 +41,84 @@ public class BoardWriteActivity extends AppCompatActivity {
         boardWriteTip = findViewById(R.id.board_wrtie_tip);
 
         Button boardWriteRegisterB = findViewById(R.id.board_wrtie_registerB);
-        boardWriteRegisterB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String boardTitle = boardWriteTitle.getText().toString();
-                String boardText = boardWriteText.getText().toString();
+        boardWriteRegisterB.setOnClickListener(v -> {
+            String boardTitle = boardWriteTitle.getText().toString();
+            String boardText = boardWriteText.getText().toString();
 
-                if (boardTitle.isEmpty()) {
-                    boardWriteTitle.setClickable(false);
-                    boardWriteTitle.setError("제목을 입력해주세요.");
-                    boardWriteTitle.requestFocus(); // 제목 입력창으로 포커스 이동
-                    return;
-                }
-                if (boardText.isEmpty()) {
-                    boardWriteTitle.setClickable(false);
-                    boardWriteText.setError("내용을 입력해주세요.");
-                    boardWriteText.requestFocus(); // 내용 입력창으로 포커스 이동
-                    return;
-                }
-
-                String currentDate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date()); // 등록 날짜
-
-                Intent intent = new Intent();
-                intent.putExtra("boardTitle", boardTitle);
-                intent.putExtra("boardText", boardText);
-                intent.putExtra("boardDate", currentDate);
-
-                intent.putExtra("isGeneralBoard", true);
-
-                // 질문 게시판 등록 여부 확인
-                boolean isQuestionBoard = boardWriteRadioGroup.getCheckedRadioButtonId() == boardWriteQuestion.getId();
-                intent.putExtra("isQuestionBoard", isQuestionBoard);
-
-                boolean isTipBoard = boardWriteRadioGroup.getCheckedRadioButtonId() == boardWriteTip.getId();
-                intent.putExtra("isTipBoard", isTipBoard);
-
-                setResult(RESULT_OK, intent);
-                finish();
+            if (boardTitle.isEmpty()) {
+                boardWriteTitle.setError("제목을 입력해주세요.");
+                boardWriteTitle.requestFocus();
+                return;
             }
-        });
+            if (boardText.isEmpty()) {
+                boardWriteText.setError("내용을 입력해주세요.");
+                boardWriteText.requestFocus();
+                return;
+            }
 
+            // 선택된 카테고리에 따라 category_id 설정
+            int categoryId = boardWriteRadioGroup.getCheckedRadioButtonId() == boardWriteQuestion.getId() ? 1 : 2;
+
+            // 사진 URL 기본값 설정
+            String photoUrl = "http://example.com/default_photo.jpg"; // 기본 사진 URL
+
+            // BoardPost 객체 생성
+            BoardPost boardPost = new BoardPost(categoryId, boardTitle, boardText, photoUrl);
+
+            // SharedPreferences에서 토큰 가져오기
+            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            String token = sharedPreferences.getString("token", null);
+            Log.d("BoardWriteActivity", "토큰 확인: " + token);
+
+            if (token == null) {
+                Toast.makeText(BoardWriteActivity.this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Retrofit 클라이언트 초기화
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(chain -> {
+                        Request original = chain.request();
+                        Request.Builder requestBuilder = original.newBuilder()
+                                .header("Authorization", "Bearer " + token);
+                        Request request = requestBuilder.build();
+                        return chain.proceed(request);
+                    }).build();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build();
+
+            // 게시물 등록 API 호출
+            // 게시물 등록 API 호출
+            ApiService apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiService.class);
+            Call<Void> call = apiService.createBoardPost(boardPost);
+
+// 로그 추가
+            Log.d("BoardWriteActivity", "Request URL: " + Constants.BASE_URL);
+            Log.d("BoardWriteActivity", "Request Headers: Authorization Bearer " + RetrofitClientInstance.getAuthToken()); // authToken 가져오는 메서드 추가 필요
+            Log.d("BoardWriteActivity", "Request Body: " + boardPost.toString());
+
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        Toast.makeText(BoardWriteActivity.this, "게시물이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                        finish(); // 액티비티 종료
+                    } else {
+                        Toast.makeText(BoardWriteActivity.this, "게시물 등록 실패: " + response.code(), Toast.LENGTH_SHORT).show();
+                        Log.e("BoardWriteActivity", "Error Code: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(BoardWriteActivity.this, "네트워크 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e("BoardWriteActivity", "Error: " + t.getMessage());
+                }
+            });
+        });
     }
 }
