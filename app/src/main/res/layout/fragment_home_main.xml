@@ -39,10 +39,10 @@
 
             <View
                 android:layout_width="375dp"
-                android:layout_height="195dp"
+                android:layout_height="180dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="130dp"
-                android:background="@drawable/graybox"/>
+                android:layout_marginTop="140dp"
+                android:background="@drawable/mainbox"/>
             <!--동물 사진-->
             <ImageView
                 android:id="@+id/home_petphoto"
