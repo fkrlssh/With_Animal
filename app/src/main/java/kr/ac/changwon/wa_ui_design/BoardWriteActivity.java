@@ -38,7 +38,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         EditText boardWriteText = findViewById(R.id.board_write_text);
         boardWriteRadioGroup = findViewById(R.id.boardwrite_RG);
         boardWriteQuestion = findViewById(R.id.board_write_question);
-        boardWriteTip = findViewById(R.id.board_wrtie_tip);
+        boardWriteTip = findViewById(R.id.board_write_tip);
 
         Button boardWriteRegisterB = findViewById(R.id.board_wrtie_registerB);
         boardWriteRegisterB.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,11 @@ public class BoardWriteActivity extends AppCompatActivity {
                     boardWriteTitle.setClickable(false);
                     boardWriteText.setError("내용을 입력해주세요.");
                     boardWriteText.requestFocus(); // 내용 입력창으로 포커스 이동
+                    return;
+                }
+
+                if (boardWriteRadioGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(BoardWriteActivity.this, "게시판을 지정해주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

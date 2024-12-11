@@ -136,7 +136,7 @@
                     android:button="@null"/>
                 <!--꿀팁 게시판 등록-->
                 <android.widget.RadioButton
-                    android:id="@+id/board_wrtie_tip"
+                    android:id="@+id/board_write_tip"
                     android:layout_width="187dp"
                     android:layout_height="35dp"
                     android:text="꿀팁"

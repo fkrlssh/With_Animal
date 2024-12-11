@@ -36,7 +36,8 @@ public class BoardWriteAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.board_list, parent, false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.board_list, parent, false);
         }
 
         TextView title = convertView.findViewById(R.id.board_title);
@@ -48,5 +49,11 @@ public class BoardWriteAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public void updateData(ArrayList<BoardWrite> filteredList) {
+        this.boardList = filteredList;
+        notifyDataSetChanged();
+    }
+
 }
 

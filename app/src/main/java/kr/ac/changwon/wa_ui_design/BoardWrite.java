@@ -47,4 +47,6 @@ class BoardWrite {
     public boolean isTipBoard() {
         return isTipBoard;
     }
+
+
 }
