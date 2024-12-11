@@ -121,7 +121,6 @@ public class CalenderActivity extends AppCompatActivity {
         // 일정 추가 버튼 클릭 시 팝업 닫고 일정 추가 화면으로 이동
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(calenderPopup);
-        builder.setNegativeButton("닫기", (dialog, which) -> dialog.dismiss());
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
