@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @POST("/join") // Flask 서버의 엔드포인트 URL
@@ -18,7 +19,9 @@ public interface ApiService {
     @POST("/pets")
     Call<Void> registerPet(@Body Pet pet);
 
-    @GET("/pets") // Flask API 엔드포인트
-    Call<List<Pet>> getPets();
+    @GET("/pets")
+    Call<List<Pet>> getPets(@Query("user_id") String userId);
+
+
 
 }

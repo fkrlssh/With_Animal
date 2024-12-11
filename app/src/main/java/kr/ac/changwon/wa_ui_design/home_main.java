@@ -1,6 +1,8 @@
 package kr.ac.changwon.wa_ui_design;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class home_main extends Fragment {
 
@@ -113,30 +122,95 @@ public class home_main extends Fragment {
         });
 
         viewPager = view.findViewById(R.id.home_view_pager);
+        if (viewPager == null) {
+            Toast.makeText(getContext(), "ViewPager 초기화 실패", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (petList == null) {
+            petList = new ArrayList<>();
+        }
 
         petPagerAdapter = new PetPagerAdapter(getContext(), petList);
+        if (petPagerAdapter == null) {
+            Toast.makeText(getContext(), "Adapter 초기화 실패", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         viewPager.setAdapter(petPagerAdapter);
 
-        Intent intent = getActivity().getIntent();
-        if (intent != null) {
-            String petName = intent.getStringExtra("petName");
-            String petSpecies = intent.getStringExtra("petSpecies");
-            String petAge = intent.getStringExtra("petAge");
-            String gender = intent.getStringExtra("gender");
-
-            if (petName != null && petSpecies != null && petAge != null && gender != null) {
-                Pet newPet = new Pet(petName, petSpecies, petAge, gender);
-                petList.add(newPet);
-                petPagerAdapter.notifyDataSetChanged();
-            }
-        }
+        // 서버에서 데이터를 가져옵니다.
+        fetchPetsFromServer();
     }
 
+    /**
+     * 서버에서 동물 데이터를 가져오는 메서드
+     */
+    private void fetchPetsFromServer() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String userId = sharedPreferences.getString("user_id", null);
+
+        if (userId == null) {
+            if (isAdded() && getContext() != null) {
+                Toast.makeText(getContext(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+
+        Call<List<Pet>> call = apiService.getPets(userId); // `user_id`를 쿼리로 전달
+
+        call.enqueue(new Callback<List<Pet>>() {
+            @Override
+            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Pet> pets = response.body();
+                    if (!pets.isEmpty()) {
+                        petList.clear();
+                        petList.addAll(pets);
+                        petPagerAdapter.notifyDataSetChanged();
+                    } else {
+                        if (isAdded() && getContext() != null) {
+                            Toast.makeText(getContext(), "등록된 동물이 없습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    if (isAdded() && getContext() != null) {
+                        Toast.makeText(getContext(), "동물 데이터를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Pet>> call, Throwable t) {
+                if (isAdded() && getContext() != null) {
+                    Toast.makeText(getContext(), "서버 오류: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
+    /**
+     * ViewPager에 동물을 추가하는 메서드
+     */
     public void addPetToViewPager(String petName, String petSpecies, String petAge, String gender, String photoPath) {
+        if (petList == null || petPagerAdapter == null) {
+            if (isAdded() && getContext() != null) {
+                Toast.makeText(getContext(), "초기화되지 않은 객체가 있습니다.", Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+
         Pet newPet = new Pet(petName, petSpecies, petAge, gender);
         newPet.setPhoto(photoPath); // 사진 경로 추가
         petList.add(newPet);
         petPagerAdapter.notifyDataSetChanged();
     }
-
 }
