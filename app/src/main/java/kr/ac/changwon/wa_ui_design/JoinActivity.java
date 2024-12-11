@@ -2,8 +2,10 @@ package kr.ac.changwon.wa_ui_design;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,14 @@ public class JoinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.join); // join.xml 연결
+
+        ImageButton joinReturnLogin = findViewById(R.id.join_return_login);
+        joinReturnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // 입력 필드 참조
         EditText userIdField = findViewById(R.id.join_id);
