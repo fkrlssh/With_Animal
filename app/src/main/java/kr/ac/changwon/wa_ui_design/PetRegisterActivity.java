@@ -65,6 +65,10 @@ public class PetRegisterActivity extends AppCompatActivity {
                     petSpeciesEditText.setError("종을 입력하세요");
                     isValid = false;
                 }
+                else if (!isValidAge(petAge)) { // 나이 유효성 검사
+                    petAgeEditText.setError("나이는 숫자만 입력 가능합니다.");
+                    isValid = false;
+                }
 
                 if (petAge.isEmpty()) {
                     petAgeEditText.setError("나이를 입력하세요");
@@ -99,6 +103,10 @@ public class PetRegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean isValidAge(String age) { // ~살 안되게
+        return age.matches("^[0-9]+$");
     }
 
     @Override
