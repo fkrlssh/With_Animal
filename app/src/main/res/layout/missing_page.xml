@@ -30,6 +30,31 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.widget.Button
+            android:id="@+id/board_find"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:text="발견"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/orangebox"/>
+
+        <android.widget.Button
+            android:id="@+id/board_delete"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:text="삭제"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/orangebox"/>
+
     </LinearLayout>
 
     <RelativeLayout
@@ -49,21 +74,24 @@
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_toRightOf="@id/missing_page_petphoto"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="10dp"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="이름"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"/>
 <!--실종 동물 이름 출력-->
             <TextView
                 android:id="@+id/missing_page_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:paddingTop="4dp"
+                android:text="123"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:background="@drawable/graybox"/>
         </LinearLayout>
@@ -77,18 +105,19 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="종"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"/>
 <!--실종 동물 종 출력-->
             <TextView
                 android:id="@+id/missing_page_spicies"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:paddingTop="4dp"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:background="@drawable/graybox"/>
         </LinearLayout>
@@ -102,17 +131,18 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="나이"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"/>
 <!--실종 동물 나이 출력-->
             <TextView
                 android:id="@+id/missing_page_age"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:paddingTop="4dp"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:background="@drawable/graybox"/>
         </LinearLayout>
@@ -126,17 +156,18 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="성별"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"/>
 <!--실종 동물 성별 출력-->
             <TextView
                 android:id="@+id/missing_page_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:paddingTop="4dp"
+                android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:background="@drawable/graybox"/>
         </LinearLayout>

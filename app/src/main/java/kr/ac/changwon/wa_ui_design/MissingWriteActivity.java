@@ -18,7 +18,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MissingWriteActivity extends AppCompatActivity {
 
@@ -29,6 +31,7 @@ public class MissingWriteActivity extends AppCompatActivity {
     private TextView missingWriteDate;
     private EditText missingWriteChar;
     private ImageView missingWritePetphoto;
+    private Calendar selectedDate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +72,8 @@ public class MissingWriteActivity extends AppCompatActivity {
         });
 
         missingWriteDate = findViewById(R.id.missing_write_date);
+        selectedDate = Calendar.getInstance();
+        setTodayAsDefaultDate();
         ImageButton dateButton = findViewById(R.id.missing_write_dateButton);
         dateButton.setOnClickListener(view -> showDatePickerDialog());
 
@@ -81,7 +86,7 @@ public class MissingWriteActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 120) {
+                if (s.length() > 120) { //글자제한
                     missingWriteChar.setText(s.subSequence(0, 120));
                     missingWriteChar.setSelection(120);
                     Toast.makeText(MissingWriteActivity.this, "특징은 최대 120자까지만 입력 가능합니다.", Toast.LENGTH_SHORT).show();
@@ -112,11 +117,6 @@ public class MissingWriteActivity extends AppCompatActivity {
                     hasError = true;
                 }
 
-                if (date.isEmpty()) {
-                    missingWriteDate.setError("실종 날짜를 입력하세요.");
-                    hasError = true;
-                }
-
                 if (description.isEmpty()) {
                     missingWriteChar.setError("특징을 입력하세요.");
                     hasError = true;
@@ -141,15 +141,19 @@ public class MissingWriteActivity extends AppCompatActivity {
         });
     }
 
+    private void setTodayAsDefaultDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        missingWriteDate.setText(dateFormat.format(selectedDate.getTime()));
+    }
+
     private void showDatePickerDialog() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int year = selectedDate.get(Calendar.YEAR);
+        int month = selectedDate.get(Calendar.MONTH);
+        int day = selectedDate.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, month1, dayOfMonth) -> {
-            String date = year1 + "/" + (month1 + 1) + "/" + dayOfMonth;
-            missingWriteDate.setText(date);
+            selectedDate.set(year1, month1, dayOfMonth);
+            setTodayAsDefaultDate(); // 선택한 날짜 반영
         }, year, month, day);
 
         datePickerDialog.show();

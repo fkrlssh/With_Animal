@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.Locale;
 public class BoardTextPageActivity extends AppCompatActivity {
     private ArrayList<Comment> commentList; // 댓글 데이터 저장 리스트
     private CommentAdapter commentAdapter;
-    private ListView commentListView;
+    private RecyclerView commentRecyclerView;
     private EditText boardTextpageComment;
 
 
@@ -47,9 +49,10 @@ public class BoardTextPageActivity extends AppCompatActivity {
 
         //댓글
         commentList = new ArrayList<>();
-        commentAdapter = new CommentAdapter(this, commentList);
-        commentListView = findViewById(R.id.board_textpage_comment_list);
-        commentListView.setAdapter(commentAdapter);
+        commentRecyclerView = findViewById(R.id.board_textpage_comment_list);
+        commentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        commentAdapter = new CommentAdapter(commentList);
+        commentRecyclerView.setAdapter(commentAdapter);
 
         boardTextpageComment = findViewById(R.id.board_textpage_comment);
         ImageButton commentSendB = findViewById(R.id.board_textpage_comment_sendB);

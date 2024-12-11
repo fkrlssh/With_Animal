@@ -101,6 +101,10 @@ public class PetRegisterActivity extends AppCompatActivity {
                     petSpeciesEditText.setError("종을 입력하세요");
                     isValid = false;
                 }
+                else if (!isValidAge(petAge)) { // 나이 유효성 검사
+                    petAgeEditText.setError("나이는 숫자만 입력 가능합니다.");
+                    isValid = false;
+                }
 
                 if (petAge.isEmpty()) {
                     petAgeEditText.setError("나이를 입력하세요");
@@ -123,7 +127,10 @@ public class PetRegisterActivity extends AppCompatActivity {
         });
     }
 
-    // 갤러리에서 사진을 선택한 결과 처리
+    private boolean isValidAge(String age) { // ~살 안되게
+        return age.matches("^[0-9]+$");
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

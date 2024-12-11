@@ -10,10 +10,12 @@
         android:id="@+id/missing_list_photo"
         android:layout_width="95dp"
         android:layout_height="95dp"
+        android:scaleType="fitXY"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"/>
 
     <TextView
+        android:id="@+id/namet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
@@ -26,14 +28,14 @@
         android:id="@+id/missing_list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/missing_list_photo"
+        android:layout_toRightOf="@id/namet"
         android:layout_above="@id/missing_list_species"
-        android:layout_marginLeft="50dp"
         android:text="초코"
         android:textSize="20dp"
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/speciest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
@@ -46,14 +48,14 @@
         android:id="@+id/missing_list_species"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/missing_list_photo"
+        android:layout_toRightOf="@id/speciest"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
         android:text="푸들"
         android:textSize="20dp"
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/datet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/missing_list_photo"
@@ -66,9 +68,8 @@
         android:id="@+id/missing_list_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/missing_list_photo"
+        android:layout_toRightOf="@id/datet"
         android:layout_below="@+id/missing_list_species"
-        android:layout_marginLeft="90dp"
         android:text="24/01/01"
         android:textSize="20dp"
         android:textStyle="bold"/>

@@ -1,56 +1,52 @@
 package kr.ac.changwon.wa_ui_design;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CommentAdapter extends BaseAdapter {
-    private Context context;
+public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
     private ArrayList<Comment> commentList;
 
-    public CommentAdapter(Context context, ArrayList<Comment> commentList){
-        this.context = context;
+    public CommentAdapter(ArrayList<Comment> commentList){
         this.commentList = commentList;
     }
 
+    public static class CommentViewHolder extends RecyclerView.ViewHolder{
+
+        TextView commentId;
+        TextView commentText;
+        TextView commentDate;
+
+        public CommentViewHolder(View view){
+            super(view);
+            commentId = view.findViewById(R.id.comment_id);
+            commentText = view.findViewById(R.id.comment_text);
+            commentDate = view.findViewById(R.id.comment_date);
+        }
+    }
+
+    public CommentViewHolder onCreateViewHolder(ViewGroup group, int viewtype) {
+        View view = LayoutInflater.from(group.getContext()).inflate(R.layout.board_comment_list, group, false);
+        return new CommentViewHolder(view);
+    }
+
     @Override
-    public int getCount() {
+    public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
+        Comment comment = commentList.get(position);
+        holder.commentId.setText(comment.getId());
+        holder.commentText.setText(comment.getText());
+        holder.commentDate.setText(comment.getDate());
+    }
+
+    public int getItemCount(){
         return commentList.size();
     }
 
-    @Override
-    public Object getItem(int position) {
-        return position;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position; // position을 고유 ID로 사용
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.board_comment_list, parent, false);
-        }
-
-        TextView commentId = convertView.findViewById(R.id.comment_id);
-        TextView commentText = convertView.findViewById(R.id.comment_text);
-        TextView commentDate = convertView.findViewById(R.id.comment_date);
-
-        Comment comment = commentList.get(position);
-
-        commentId.setText(comment.getId());
-        commentText.setText(comment.getText());
-        commentDate.setText(comment.getDate());
-
-        return convertView;
-    }
 }
+

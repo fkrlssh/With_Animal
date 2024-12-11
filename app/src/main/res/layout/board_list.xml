@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
         <!--제목-->
@@ -29,27 +29,4 @@
             android:textSize="15sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/commentimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_comment_24"/>
-        <!--댓글 수-->
-        <TextView
-            android:id="@+id/comment_num"
-            android:layout_below="@+id/commentimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="10"
-            android:textSize="15sp" />
-
-    </RelativeLayout>
 </RelativeLayout>
