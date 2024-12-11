@@ -111,5 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("user_id", userId); // user_id 저장
         editor.apply();
         Log.d("LoginActivity", "User ID 저장 완료: " + userId);
+
+
     }
 }
