@@ -97,6 +97,15 @@
         <activity android:name=".HospitalReviewActivity"
             android:label="HospitalReviewActivity"/>
 
+        <activity android:name=".MissingWriteActivity"
+            android:label="MissingWriteActivity"/>
+
+        <activity android:name=".MissingMapActivity"
+            android:label="MissingMapActivity"/>
+
+        <activity android:name=".MissingPageActivity"
+            android:label="MissingPageActivity"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDfmh2ApAQpQEyQhLgUgn1Aow3gmi4NviA" />
