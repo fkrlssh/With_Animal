@@ -41,8 +41,7 @@
                 android:layout_width="375dp"
                 android:layout_height="180dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"
-                android:background="@drawable/mainbox"/>
+                android:layout_marginTop="140dp"/>
             <!--동물 사진-->
             <ImageView
                 android:id="@+id/home_petphoto"
@@ -50,7 +49,6 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="15dp"
-                android:src="@mipmap/wa_icon"
                 android:scaleType="centerCrop"/>
             <!--동물 이름-->
             <TextView
@@ -61,7 +59,8 @@
                 android:layout_marginLeft="180dp"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"/>
+                android:background="@drawable/textbox"
+                android:visibility="invisible"/>
             <!--동물 종-->
             <TextView
                 android:id="@+id/home_petspecies"
@@ -71,7 +70,8 @@
                 android:layout_marginLeft="180dp"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"/>
+                android:background="@drawable/textbox"
+                android:visibility="invisible"/>/>
             <!--동물 나이-->
             <TextView
                 android:id="@+id/home_petage"
@@ -81,7 +81,8 @@
                 android:layout_marginLeft="180dp"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"/>
+                android:background="@drawable/textbox"
+                android:visibility="invisible"/>/>
 
             <TextView
                 android:id="@+id/home_petgender"
@@ -91,7 +92,8 @@
                 android:layout_marginLeft="180dp"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"/>
+                android:background="@drawable/textbox"
+                android:visibility="invisible"/>/>
 
             <View
                 android:layout_width="374dp"

@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="375dp"
-        android:layout_height="195dp"
+        android:layout_height="180dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/graybox">
 
@@ -16,10 +16,10 @@
             android:id="@+id/pet_photo"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
-            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/wa_icon"
             android:visibility="visible" />
 
         <!-- 동물 이름 -->
@@ -29,11 +29,11 @@
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/pet_photo"
             android:background="@drawable/textbox"
             android:gravity="center"
-            android:text="이름"
+            android:text=""
             android:textSize="15sp"
             android:visibility="visible" />
 
@@ -48,7 +48,7 @@
             android:layout_toRightOf="@id/pet_photo"
             android:background="@drawable/textbox"
             android:gravity="center"
-            android:text="종"
+            android:text=""
             android:textSize="15sp"
             android:visibility="visible" />
 
@@ -63,7 +63,7 @@
             android:layout_toRightOf="@id/pet_photo"
             android:background="@drawable/textbox"
             android:gravity="center"
-            android:text="나이"
+            android:text=""
             android:textSize="15sp"
             android:visibility="visible" />
 
@@ -78,7 +78,7 @@
             android:layout_toRightOf="@id/pet_photo"
             android:background="@drawable/textbox"
             android:gravity="center"
-            android:text="성별"
+            android:text=""
             android:textSize="15sp"
             android:visibility="visible" />
 
