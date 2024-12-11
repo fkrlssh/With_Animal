@@ -115,7 +115,7 @@
             android:layout_marginTop="35dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="00/00/00"
+            android:text=""
             android:textSize="15sp"
             android:background="@drawable/graybox"/>
 <!--datepicker 출력 버튼-->

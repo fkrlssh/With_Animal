@@ -29,31 +29,6 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <android.widget.Button
-            android:id="@+id/board_find"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
-            android:text="발견"
-            android:textColor="@color/white"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/orangebox"/>
-
-        <android.widget.Button
-            android:id="@+id/board_delete"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
-            android:text="삭제"
-            android:textColor="@color/white"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/orangebox"/>
-
     </LinearLayout>
 
     <RelativeLayout
