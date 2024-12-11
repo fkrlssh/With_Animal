@@ -50,8 +50,8 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="15dp"
-                android:scaleType="fitXY"
-                android:visibility="invisible"/>
+                android:src="@mipmap/wa_icon"
+                android:scaleType="fitXY"/>
             <!--동물 이름-->
             <TextView
                 android:id="@+id/home_petname"
@@ -59,11 +59,9 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="180dp"
-                android:text="이름"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="invisible"/>
+                android:background="@drawable/textbox"/>
             <!--동물 종-->
             <TextView
                 android:id="@+id/home_petspecies"
@@ -71,11 +69,9 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="195dp"
                 android:layout_marginLeft="180dp"
-                android:text="종"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="invisible"/>
+                android:background="@drawable/textbox"/>
             <!--동물 나이-->
             <TextView
                 android:id="@+id/home_petage"
@@ -83,11 +79,9 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="235dp"
                 android:layout_marginLeft="180dp"
-                android:text="나이"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="invisible"/>
+                android:background="@drawable/textbox"/>
 
             <TextView
                 android:id="@+id/home_petgender"
@@ -95,11 +89,9 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="275dp"
                 android:layout_marginLeft="180dp"
-                android:text="성별"
                 android:textSize="15sp"
                 android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="invisible"/>
+                android:background="@drawable/textbox"/>
 
             <View
                 android:layout_width="374dp"
@@ -110,28 +102,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="175dp"
-                android:text="새로운 정보를\n등록해 보세요."/>
-            <!--신규 동물 등록 버튼-->
-            <ImageButton
-                android:id="@+id/homeplusB"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="220dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/baseline_add_circle_24"
-                android:scaleType="fitXY"
-                android:background="@android:color/transparent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="107dp"
                 android:layout_gravity="center_horizontal"
                 android:text="My Animal"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp"/>
+
+            <ImageButton
+                android:id="@+id/homeplusB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="107dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/baseline_add_circle_24w"/>
 
             <View
                 android:layout_width="375dp"
