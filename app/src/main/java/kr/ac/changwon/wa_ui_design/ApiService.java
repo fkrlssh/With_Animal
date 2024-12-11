@@ -1,8 +1,11 @@
 package kr.ac.changwon.wa_ui_design;
 
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -11,4 +14,11 @@ public interface ApiService {
 
     @POST("/login") // Flask 서버의 '/login' 엔드포인트와 매핑
     Call<ResponseBody> loginUser(@Body User user);
+
+    @POST("/pets")
+    Call<Void> registerPet(@Body Pet pet);
+
+    @GET("/pets") // Flask API 엔드포인트
+    Call<List<Pet>> getPets();
+
 }
