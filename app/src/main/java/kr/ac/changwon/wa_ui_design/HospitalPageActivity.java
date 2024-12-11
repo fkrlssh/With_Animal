@@ -35,12 +35,16 @@ public class HospitalPageActivity extends AppCompatActivity  implements OnMapRea
         String hospitalAddress = getIntent().getStringExtra("HOSPITAL_ADDRESS");
         float distance = getIntent().getFloatExtra("HOSPITAL_DISTANCE", 0.0f);
         float rating = getIntent().getFloatExtra("HOSPITAL_RATING", 0.0f);
+        String workingHours = getIntent().getStringExtra("HOSPITAL_WORKING_HOURS");
+        String phoneNumber = getIntent().getStringExtra("HOSPITAL_PHONE_NUMBER");
 
 
         TextView hospitalNameTextView = findViewById(R.id.hospital_page_name);
         TextView hospitalAddressTextView = findViewById(R.id.hospital_page_place);
         TextView hospitalDistanceTextView = findViewById(R.id.hospital_page_distance);
         TextView hospitalRatingTextView = findViewById(R.id.hospital_page_rating);
+        TextView hospitalTimeTextView = findViewById(R.id.hospital_time);
+        TextView hospitalTelTextView = findViewById(R.id.hospital_tel);
 
         ListView reviewListView = findViewById(R.id.hospital_page_list);
         List<HospitalReviewItem> reviewList = new ArrayList<>();
@@ -51,6 +55,8 @@ public class HospitalPageActivity extends AppCompatActivity  implements OnMapRea
         hospitalAddressTextView.setText(hospitalAddress);
         hospitalDistanceTextView.setText(String.format("%.1f", distance / 1000) + " km");
         hospitalRatingTextView.setText(String.format("%.1f", rating));
+        hospitalTimeTextView.setText(workingHours);
+        hospitalTelTextView.setText(phoneNumber);
 
 
         ImageButton hospitalReturnMain = findViewById(R.id.hospital_page_return_hospital);

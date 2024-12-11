@@ -13,8 +13,10 @@ public class Hospital {
     private float distance;
     private List<HospitalReviewItem> reviews; // 병원 리뷰 리스트
     private float averageRating; // 병원 평균 별점
+    private String workingHours; // 진료 시간
+    private String phoneNumber; // 전화번호
 
-    public Hospital(String name, String address, double latitude, double longitude) {
+    public Hospital(String name, String address, double latitude, double longitude, String workingHours, String phoneNumber) {
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -22,6 +24,8 @@ public class Hospital {
         this.distance = 0.0f;
         this.reviews = new ArrayList<>(); // 초기화
         this.averageRating = 0.0f; // 초기값 설정
+        this.workingHours = workingHours;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
@@ -83,5 +87,13 @@ public class Hospital {
             sum += review.getReviewRating();
         }
         this.averageRating = sum / reviews.size(); // 평균 계산
+    }
+
+    public String getWorkingHours() {
+        return workingHours;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }
