@@ -172,8 +172,11 @@ public class home_main extends Fragment {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Pet> pets = response.body();
                     if (!pets.isEmpty()) {
-                        petList.clear();
-                        petList.addAll(pets);
+                        for (Pet pet : pets) {
+                            if (!petList.contains(pet)) {
+                                petList.add(pet);
+                            }
+                        }
                         petPagerAdapter.notifyDataSetChanged();
                     } else {
                         if (isAdded() && getContext() != null) {
