@@ -178,7 +178,7 @@ public class board_main extends Fragment {
     public void addBoardList(String boardTitle, String boardText, String boardDate, boolean isQuestionBoard, boolean isTipBoard) {
         // 일반 게시판에 추가될 경우 질문과 팁 여부를 포함하여 객체 생성
         BoardWrite board = new BoardWrite(boardTitle, boardText, boardDate, isQuestionBoard, isTipBoard);
-        boardList.add(board);
+        boardList.add(0,board);
 
         if (boardwriteAdapter != null) {
             boardwriteAdapter.notifyDataSetChanged();  // 없으면 UI에 표시 안돼
@@ -187,7 +187,7 @@ public class board_main extends Fragment {
 
     public void addQuestionList(String boardTitle, String boardText, String boardDate) {
         BoardWrite board = new BoardWrite(boardTitle, boardText, boardDate, true, false);
-        questionList.add(board);
+        questionList.add(0,board);
         if (questionAdapter != null) {
             questionAdapter.notifyDataSetChanged();  // 없으면 ui에 표시 안돼
         }
@@ -195,7 +195,7 @@ public class board_main extends Fragment {
 
     public void addTipList(String boardTitle, String boardText, String boardDate) {
         BoardWrite board = new BoardWrite(boardTitle, boardText, boardDate, false, true);
-        tipList.add(board);
+        tipList.add(0,board);
         if (tipAdapter != null) {
             tipAdapter.notifyDataSetChanged();  // 없으면 ui에 표시 안돼
         }

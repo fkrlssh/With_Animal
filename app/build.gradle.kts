@@ -53,5 +53,5 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth:22.0.0")
     implementation ("com.google.firebase:firebase-database:20.2.2")
     implementation ("com.android.volley:volley:1.2.1")
-
+    implementation("com.android.support:recyclerview-selection:28.0.0")
 }
