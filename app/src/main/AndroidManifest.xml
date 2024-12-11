@@ -106,6 +106,9 @@
         <activity android:name=".MissingPageActivity"
             android:label="MissingPageActivity"/>
 
+        <activity android:name=".MissingFindActivity"
+            android:label="MissingFindActivity"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDfmh2ApAQpQEyQhLgUgn1Aow3gmi4NviA" />
