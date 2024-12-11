@@ -15,8 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -119,36 +128,96 @@ public class board_main extends Fragment {
         });
 
         Button boardWriteB = view.findViewById(R.id.board_writeB); // 글쓰기 버튼
-        boardWriteB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
-                startActivityForResult(intent, 1);
-            }
+        boardWriteB.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
+            startActivityForResult(intent, 1);
         });
 
         Button boardQuestionB = view.findViewById(R.id.board_questionB); // 질문 게시판 이동 버튼
-        boardQuestionB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (questionAdapter != null) {
-                    questionAdapter.notifyDataSetChanged();
-                }
-                Intent intent = new Intent(getActivity(), BoardQuestionActivity.class);
-                startActivity(intent);
+        boardQuestionB.setOnClickListener(v -> {
+            if (questionAdapter != null) {
+                questionAdapter.notifyDataSetChanged();
             }
+            Intent intent = new Intent(getActivity(), BoardQuestionActivity.class);
+            startActivity(intent);
         });
 
         Button boardTopB = view.findViewById(R.id.board_tipB); // 팁 게시판 이동 버튼
-        boardTopB.setOnClickListener(new View.OnClickListener() {
+        boardTopB.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), BoardTipActivity.class);
+            startActivity(intent);
+        });
+
+        // 서버에서 게시물 데이터를 가져오는 메서드 호출
+        fetchPosts(); // 데이터 로딩
+    }
+
+    /**
+     * 서버에서 게시물 데이터를 가져오는 메서드
+     */
+    private void fetchPosts() {
+        ApiService apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiService.class);
+        apiService.getPosts().enqueue(new Callback<List<BoardPost>>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), BoardTipActivity.class);
-                startActivity(intent);
+            public void onResponse(Call<List<BoardPost>> call, Response<List<BoardPost>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // BoardPost를 BoardWrite로 변환
+                    List<BoardPost> posts = response.body();
+                    boardList.clear();
+
+                    for (BoardPost post : posts) {
+                        // category_id를 기반으로 게시물 타입 결정
+                        boolean isQuestion = post.getCategory_id() == 1; // 질문 카테고리 ID
+                        boolean isTip = post.getCategory_id() == 2;     // 팁 카테고리 ID
+
+                        BoardWrite boardWrite = new BoardWrite(
+                                post.getTitle(),
+                                post.getContent(),
+                                getCurrentDate(), // 또는 서버에서 날짜를 받아온다면 그 값을 사용
+                                isQuestion,
+                                isTip
+                        );
+
+                        boardList.add(boardWrite);
+
+                        // 질문 게시물이면 questionList에도 추가
+                        if (isQuestion) {
+                            questionList.add(boardWrite);
+                        }
+
+                        // 팁 게시물이면 tipList에도 추가
+                        if (isTip) {
+                            tipList.add(boardWrite);
+                        }
+                    }
+
+                    // 각 어댑터 업데이트
+                    if (boardwriteAdapter != null) {
+                        boardwriteAdapter.notifyDataSetChanged();
+                    }
+                    if (questionAdapter != null) {
+                        questionAdapter.notifyDataSetChanged();
+                    }
+                    if (tipAdapter != null) {
+                        tipAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "게시물을 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BoardPost>> call, Throwable t) {
+                Toast.makeText(getContext(), "서버 연결 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    // 현재 날짜를 문자열로 반환하는 헬퍼 메소드
+    private String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return sdf.format(new Date());
+    }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

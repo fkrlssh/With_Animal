@@ -1,5 +1,6 @@
 package kr.ac.changwon.wa_ui_design;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -106,6 +111,13 @@ public class BoardWriteActivity extends AppCompatActivity {
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.isSuccessful()) {
                         Toast.makeText(BoardWriteActivity.this, "게시물이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+
+                        Intent resultIntent = new Intent();
+                        resultIntent.putExtra("boardTitle", boardTitle);
+                        resultIntent.putExtra("boardText", boardText);
+                        resultIntent.putExtra("boardDate", new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date()));
+                        setResult(RESULT_OK, resultIntent);
+
                         finish(); // 액티비티 종료
                     } else {
                         Toast.makeText(BoardWriteActivity.this, "게시물 등록 실패: " + response.code(), Toast.LENGTH_SHORT).show();
