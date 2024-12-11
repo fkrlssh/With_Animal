@@ -42,7 +42,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/graybox"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
 <!--발견자의 실종 동물 사진 등록 버튼-->
         <ImageButton
             android:id="@+id/missing_find_photoadd"

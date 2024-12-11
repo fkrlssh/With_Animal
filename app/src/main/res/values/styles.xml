@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="DatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+
+            <item name="colorAccent">#FF5E00</item>
+            <item name="colorControlActivated">#FF5E00</item>
+
+            <item name="android:textColorPrimary">#000000</item>
+            <item name="android:textColorSecondary">#000000</item>
+            <item name="android:textColorPrimaryInverse">#FFFFFF</item>
+            <item name="android:textColor">#000000</item>
+            <item name="android:textColorSecondaryInverse">#FFFFFF</item>
+
+        </style>
+</resources>

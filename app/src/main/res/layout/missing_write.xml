@@ -42,7 +42,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/graybox"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
 <!--실종 동물 사진 등록 버튼-->
         <ImageButton
             android:id="@+id/missing_write_photoadd"
@@ -154,6 +154,23 @@
         android:lines="4"
         android:inputType="textMultiLine"
         android:background="@drawable/graybox"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="등록 동물 선택"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:id="@+id/missing_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:spinnerMode="dropdown"/>
 
 <!--실종 동물 등록 버튼-->
     <android.widget.Button

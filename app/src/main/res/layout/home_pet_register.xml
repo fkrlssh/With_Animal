@@ -39,7 +39,7 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/graybox"
-        android:scaleType="fitXY"/>
+        android:scaleType="centerCrop"/>
 <!--사진 등록 버튼-->
     <android.widget.Button
         android:id="@+id/register_photoB"
