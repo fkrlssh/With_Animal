@@ -36,6 +36,12 @@ public class BoardTextPageActivity extends AppCompatActivity {
         TextView boardText = findViewById(R.id.board_textpage_text);
         TextView boardDate = findViewById(R.id.board_textpage_date);
 
+        TextView boardCategory = findViewById(R.id.board_category);
+        boolean isQuestionBoard = getIntent().getBooleanExtra("isQuestionBoard", false);
+        boolean isTipBoard = getIntent().getBooleanExtra("isTipBoard", false);
+
+        boardCategory.setText(isQuestionBoard ? "질문" : "꿀팁");
+
         Intent intent = getIntent();
         String title = intent.getStringExtra("boardTitle");
         String text = intent.getStringExtra("boardText");

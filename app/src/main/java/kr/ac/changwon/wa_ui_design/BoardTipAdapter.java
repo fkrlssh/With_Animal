@@ -48,4 +48,10 @@ public class BoardTipAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public void updateData(ArrayList<BoardWrite> filteredList) {
+        this.tipList = filteredList;
+        notifyDataSetChanged();
+    }
+
 }

@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -98,6 +101,8 @@ public class board_main extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        EditText searchField = view.findViewById(R.id.board_search);
 
         // 전체 글
         listView = view.findViewById(R.id.board_listview);
@@ -211,6 +216,30 @@ public class board_main extends Fragment {
                 Toast.makeText(getContext(), "서버 연결 실패", Toast.LENGTH_SHORT).show();
             }
         });
+
+        searchField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 검색어 가져오기
+                String query = s.toString().toLowerCase().trim();
+
+                // 필터링 로직
+                ArrayList<BoardWrite> filteredList = new ArrayList<>();
+                for (BoardWrite item : boardList) {
+                    if (item.getBoardTitle().toLowerCase().contains(query) ||
+                            item.getBoardText().toLowerCase().contains(query)) {
+                        filteredList.add(item);
+                    }
+                }
+                boardwriteAdapter.updateData(filteredList);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
     }
 
     // 현재 날짜를 문자열로 반환하는 헬퍼 메소드
@@ -225,6 +254,7 @@ public class board_main extends Fragment {
             String boardTitle = data.getStringExtra("boardTitle");
             String boardText = data.getStringExtra("boardText");
             String boardDate = data.getStringExtra("boardDate");
+
 
             boolean isQuestionBoard = data.getBooleanExtra("isQuestionBoard", false);
             boolean isTipBoard = data.getBooleanExtra("isTipBoard", false);

@@ -15,10 +15,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MissingPageActivity extends AppCompatActivity {
 
+    Button boardfind;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.missing_page);
+
+        Button boardfind = (Button) findViewById(R.id.board_find);
+        Button missingPageFindButton = findViewById(R.id.missing_page_findButton);
+        boardfind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             missingPageFindButton.setEnabled(false);
+             missingPageFindButton.setText("발견 완료되었습니다.");
+            }
+        });
 
         ImageButton missingpageReturnMissingB = findViewById(R.id.missingpage_return_missingB);
         missingpageReturnMissingB.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +39,7 @@ public class MissingPageActivity extends AppCompatActivity {
             }
         });
 
-        Button missingPageFindButton = findViewById(R.id.missing_page_findButton);
+
         missingPageFindButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

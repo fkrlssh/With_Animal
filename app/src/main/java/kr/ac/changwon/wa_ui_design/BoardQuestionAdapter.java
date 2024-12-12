@@ -48,4 +48,11 @@ public class BoardQuestionAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public void updateData(ArrayList<BoardWrite> filteredList) {
+        this.questionList = filteredList;
+        notifyDataSetChanged();
+    }
+
+
 }

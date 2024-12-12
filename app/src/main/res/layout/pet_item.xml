@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="top">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="375dp"
         android:layout_height="180dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/graybox">
+        android:background="@drawable/mainbox"
+        android:layout_marginTop="10dp" >
 
         <!-- 동물 사진 -->
         <ImageView
