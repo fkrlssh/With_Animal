@@ -38,7 +38,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         EditText boardWriteText = findViewById(R.id.board_write_text);
         boardWriteRadioGroup = findViewById(R.id.boardwrite_RG);
         boardWriteQuestion = findViewById(R.id.board_write_question);
-        boardWriteTip = findViewById(R.id.board_wrtie_tip);
+        boardWriteTip = findViewById(R.id.board_write_tip);
 
         Button boardWriteRegisterB = findViewById(R.id.board_wrtie_registerB);
         boardWriteRegisterB.setOnClickListener(new View.OnClickListener() {
