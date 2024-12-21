@@ -95,6 +95,7 @@ public class board_main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_board_main, container, false);
     }
 
@@ -104,10 +105,12 @@ public class board_main extends Fragment {
 
         EditText searchField = view.findViewById(R.id.board_search);
 
+
         // 전체 글
         listView = view.findViewById(R.id.board_listview);
         boardwriteAdapter = new BoardWriteAdapter(getContext(), boardList);
         listView.setAdapter(boardwriteAdapter);
+
 
         // 질문만
         questionListView = view.findViewById(R.id.question_list);
@@ -154,13 +157,13 @@ public class board_main extends Fragment {
         });
 
         // 서버에서 게시물 데이터를 가져오는 메서드 호출
-        fetchPosts(); // 데이터 로딩
+        fetchPosts(searchField); // 데이터 로딩
     }
 
     /**
      * 서버에서 게시물 데이터를 가져오는 메서드
      */
-    private void fetchPosts() {
+    private void fetchPosts(EditText searchField) {
         ApiService apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiService.class);
         apiService.getPosts().enqueue(new Callback<List<BoardPost>>() {
             @Override
