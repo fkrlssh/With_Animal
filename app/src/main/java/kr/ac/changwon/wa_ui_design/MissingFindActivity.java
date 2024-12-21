@@ -36,16 +36,16 @@ public class MissingFindActivity extends AppCompatActivity {
             String photoUri = intent.getStringExtra("photoUri");
 
             if (tel != null) {
-                missingFindTel.setText(tel); // 전번 표시
+                missingFindTel.setText(tel);
             }
 
             if (address != null) {
-                missingFindPlace.setText(address); // 장소 표시
+                missingFindPlace.setText(address);
             }
 
             if (photoUri != null) {
                 Uri photo = Uri.parse(photoUri);
-                missingFindPetphoto.setImageURI(photo); // 사진 표시
+                missingFindPetphoto.setImageURI(photo);
                 missingFindPetphoto.setTag(photoUri);
             }
         }
@@ -82,13 +82,13 @@ public class MissingFindActivity extends AppCompatActivity {
                 hasError = true;
             }
 
-            if (!isValidPhoneNumber(tel)) { // 010-1234-4567 형식으로 적겄거나, 숫자말고 다른 문자 적었는지 확인
+            if (!isValidPhoneNumber(tel)) {
                 missingFindTel.setError("알맞지 않은 전화번호 형식입니다.");
                 hasError = true;
             }
 
             if (photoUri == null) {
-                missingFindPetphoto.setContentDescription("사진을 등록하세요."); // 이미지뷰에는 setError가 없으므로 ContentDescription 사용
+                missingFindPetphoto.setContentDescription("사진을 등록하세요.");
                 hasError = true;
             }
 
@@ -99,7 +99,7 @@ public class MissingFindActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isValidPhoneNumber(String phoneNumber) { // 전화번호 11자리, 숫자만 입력가능하게
+    private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("^[0-9]{11}$");
     }
 
@@ -114,7 +114,7 @@ public class MissingFindActivity extends AppCompatActivity {
             Uri selectedImage = data.getData();
             if (selectedImage != null) {
                 missingFindPetphoto.setImageURI(selectedImage);
-                missingFindPetphoto.setTag(selectedImage.toString()); // 사진 업데이트
+                missingFindPetphoto.setTag(selectedImage.toString());
             } else {
                 missingFindPetphoto.setContentDescription("사진을 선택하지 못했습니다.");
             }

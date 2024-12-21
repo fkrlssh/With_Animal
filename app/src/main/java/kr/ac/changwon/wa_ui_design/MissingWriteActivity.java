@@ -51,7 +51,6 @@ public class MissingWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.missing_write);
 
-        // 돌아가기 버튼
         ImageButton missingWriteReturn = findViewById(R.id.missing_write_return_missing);
         missingWriteReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +61,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 사진 등록 버튼
+
         missingWritePetphoto = findViewById(R.id.missing_write_petphoto);
         ImageButton photoAddButton = findViewById(R.id.missing_write_photoadd);
         photoAddButton.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +72,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 실종 장소
+
         missingWritePlace = findViewById(R.id.missing_write_place);
         ImageButton placeButton = findViewById(R.id.missing_write_placeButton);
         placeButton.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +89,7 @@ public class MissingWriteActivity extends AppCompatActivity {
         ImageButton dateButton = findViewById(R.id.missing_write_dateButton);
         dateButton.setOnClickListener(view -> showDatePickerDialog());
 
-        // 특징 부분
+
         missingWriteChar = findViewById(R.id.missing_write_char);
         missingWriteChar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -112,7 +111,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 등록 버튼
+
         Button missingWriteRegisterB = findViewById(R.id.missing_write_registerB);
         missingWriteRegisterB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +121,6 @@ public class MissingWriteActivity extends AppCompatActivity {
                 String description = missingWriteChar.getText().toString().trim();
                 String photoUri = missingWritePetphoto.getTag() != null ? missingWritePetphoto.getTag().toString() : null;
 
-                // 입력값 검증
                 boolean hasError = false;
 
                 if (place.isEmpty()) {
@@ -142,7 +140,7 @@ public class MissingWriteActivity extends AppCompatActivity {
 
                 if (!hasError) {
                     LostPet lostPet = new LostPet();
-                    lostPet.setName("이름");  // 임시 데이터
+                    lostPet.setName("이름");
                     lostPet.setSpecies("종");
                     lostPet.setLost_date(date);
                     lostPet.setLost_location(place);
@@ -205,14 +203,13 @@ public class MissingWriteActivity extends AppCompatActivity {
 
             if (selectedImage != null) {
                 missingWritePetphoto.setImageURI(selectedImage);
-                uploadPhoto(selectedImage);  // 이미지 업로드 메소드 호출
+                uploadPhoto(selectedImage);
             } else {
                 Toast.makeText(this, "사진을 선택하지 못했습니다.", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    // 이미지 파일 업로드 메소드
     private void uploadPhoto(Uri imageUri) {
         try {
             InputStream inputStream = getContentResolver().openInputStream(imageUri);

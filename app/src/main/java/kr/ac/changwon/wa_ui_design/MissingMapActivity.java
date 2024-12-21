@@ -84,7 +84,6 @@ public class MissingMapActivity extends AppCompatActivity implements OnMapReadyC
 
         googleMap.setMyLocationEnabled(true);
 
-        // 현재 위치로 이동
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
             if (location != null) {
                 LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
@@ -95,7 +94,6 @@ public class MissingMapActivity extends AppCompatActivity implements OnMapReadyC
             }
         });
 
-        // 지도 클릭 리스너로 핑 찍기
         googleMap.setOnMapClickListener(latLng -> {
             selectedLocation = latLng;
             googleMap.clear();
@@ -109,7 +107,7 @@ public class MissingMapActivity extends AppCompatActivity implements OnMapReadyC
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
             if (addresses != null && !addresses.isEmpty()) {
                 Address address = addresses.get(0);
-                return address.getAddressLine(0); // 전체 주소 반환
+                return address.getAddressLine(0);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -38,7 +38,7 @@ public class PetPagerAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.pet_item, container, false); // 새로운 레이아웃 파일 사용
         Pet pet = petList.get(position);
 
-        // UI 요소 설정
+
         TextView petName = view.findViewById(R.id.pet_name);
         TextView petSpecies = view.findViewById(R.id.pet_species);
         TextView petAge = view.findViewById(R.id.pet_age);
@@ -48,7 +48,7 @@ public class PetPagerAdapter extends PagerAdapter {
             petPhoto.setImageURI(Uri.parse(pet.getPhoto()));
         }
 
-        // Pet 정보 설정
+
         petName.setText(pet.getName());
         petSpecies.setText(pet.getSpecies());
         petAge.setText(pet.getAge());

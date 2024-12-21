@@ -43,8 +43,8 @@ public class MissingActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        ImageButton missingReturnHome = findViewById(R.id.missing_return_home); // 실종동물 돌아가기 버튼
-        missingReturnHome.setOnClickListener(new View.OnClickListener() { // 메인 페이지로 돌아가기
+        ImageButton missingReturnHome = findViewById(R.id.missing_return_home);
+        missingReturnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MissingActivity.this, MainActivity.class);
