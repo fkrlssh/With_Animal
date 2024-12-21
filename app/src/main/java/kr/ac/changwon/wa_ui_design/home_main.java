@@ -84,7 +84,6 @@ public class home_main extends Fragment {
         Button missingCategoryButton = view.findViewById(R.id.missing_category);
         Button calendarCategoryButton = view.findViewById(R.id.calender_category);
 
-        // View 초기화
         FrameLayout initialView = view.findViewById(R.id.home_initial_view);
         ViewPager viewPager = view.findViewById(R.id.home_view_pager);
 
@@ -104,7 +103,8 @@ public class home_main extends Fragment {
         homeCategoryB.setOnClickListener(v -> {
             if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                 drawerLayout.closeDrawer(Gravity.LEFT);
-            } else {
+            }
+            else {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
@@ -142,7 +142,6 @@ public class home_main extends Fragment {
         petPagerAdapter = new PetPagerAdapter(getContext(), petList);
         viewPager.setAdapter(petPagerAdapter);
 
-        // 서버에서 데이터를 가져옵니다.
         fetchPetsFromServer(initialView, viewPager);
     }
 
@@ -151,17 +150,12 @@ public class home_main extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_REGISTER && resultCode == Activity.RESULT_OK) {
-            // 등록 완료 후 서버에서 최신 데이터 가져오기
             FrameLayout initialView = getView().findViewById(R.id.home_initial_view);
             ViewPager viewPager = getView().findViewById(R.id.home_view_pager);
             fetchPetsFromServer(initialView, viewPager);
         }
     }
 
-
-    /**
-     * 서버에서 동물 데이터를 가져오는 메서드
-     */
     private void fetchPetsFromServer(FrameLayout initialView, ViewPager viewPager) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -192,13 +186,15 @@ public class home_main extends Fragment {
                         petPagerAdapter.notifyDataSetChanged();
                         initialView.setVisibility(View.GONE);
                         viewPager.setVisibility(View.VISIBLE);
-                    } else {
+                    }
+                    else {
                         petList.clear();
                         petPagerAdapter.notifyDataSetChanged();
                         initialView.setVisibility(View.VISIBLE);
                         viewPager.setVisibility(View.GONE);
                     }
-                } else {
+                }
+                else {
                     Toast.makeText(getContext(), "데이터를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -211,10 +207,6 @@ public class home_main extends Fragment {
         });
     }
 
-
-    /**
-     * ViewPager에 동물을 추가하는 메서드
-     */
     public void addPetToViewPager(String petName, String petSpecies, String petAge, String gender, String photoPath) {
         Pet newPet = new Pet(petName, petSpecies, petAge, gender);
         newPet.setPhoto(photoPath);

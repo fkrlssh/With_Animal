@@ -57,25 +57,21 @@ public class Hospital {
         return reviews;
     }
 
-    // 평균 별점 가져오기
     public float getAverageRating() {
         return averageRating;
     }
 
-    // 리뷰 추가 메서드
     public void addReview(HospitalReviewItem review) {
         reviews.add(review); // 리뷰 추가
         updateAverageRating(); // 평균 별점 업데이트
     }
 
-    // 거리 계산 메서드
     public float calculateDistance(double userLatitude, double userLongitude) {
         float[] results = new float[1];
         Location.distanceBetween(userLatitude, userLongitude, this.latitude, this.longitude, results);
         return results[0]; // 결과는 미터 단위
     }
 
-    // 평균 별점 업데이트
     private void updateAverageRating() {
         if (reviews.isEmpty()) {
             averageRating = 0.0f;

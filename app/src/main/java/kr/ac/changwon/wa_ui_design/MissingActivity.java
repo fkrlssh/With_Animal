@@ -71,8 +71,8 @@ public class MissingActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             MissingData newData = (MissingData) data.getSerializableExtra("newData");
             if (newData != null) {
-                missingDataList.add(0, newData); // 최신 데이터 추가
-                missingListAdapter.notifyDataSetChanged(); // 어댑터 갱신
+                missingDataList.add(0, newData);
+                missingListAdapter.notifyDataSetChanged();
             }
         }
     }

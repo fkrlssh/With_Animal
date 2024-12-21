@@ -51,6 +51,7 @@ public class MissingWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.missing_write);
 
+        // 돌아가기 버튼
         ImageButton missingWriteReturn = findViewById(R.id.missing_write_return_missing);
         missingWriteReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +90,7 @@ public class MissingWriteActivity extends AppCompatActivity {
         ImageButton dateButton = findViewById(R.id.missing_write_dateButton);
         dateButton.setOnClickListener(view -> showDatePickerDialog());
 
-
+        // 특징 부분
         missingWriteChar = findViewById(R.id.missing_write_char);
         missingWriteChar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -121,6 +122,7 @@ public class MissingWriteActivity extends AppCompatActivity {
                 String description = missingWriteChar.getText().toString().trim();
                 String photoUri = missingWritePetphoto.getTag() != null ? missingWritePetphoto.getTag().toString() : null;
 
+                // 입력값 검증
                 boolean hasError = false;
 
                 if (place.isEmpty()) {
@@ -140,7 +142,7 @@ public class MissingWriteActivity extends AppCompatActivity {
 
                 if (!hasError) {
                     LostPet lostPet = new LostPet();
-                    lostPet.setName("이름");
+                    lostPet.setName("이름");  // 임시 데이터
                     lostPet.setSpecies("종");
                     lostPet.setLost_date(date);
                     lostPet.setLost_location(place);
@@ -209,6 +211,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void uploadPhoto(Uri imageUri) {
         try {

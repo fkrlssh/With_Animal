@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // User 객체 생성
         User user = new User(userId, password);
         apiService.loginUser(user).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -79,7 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                             Log.d("LoginActivity", "MainActivity로 이동 완료.");
-                        } else {
+                        }
+                        else {
                             Log.e("LoginActivity", "토큰이 응답에 포함되지 않았습니다.");
                             Toast.makeText(LoginActivity.this, "토큰을 받을 수 없습니다.", Toast.LENGTH_SHORT).show();
                         }
@@ -87,7 +87,8 @@ public class LoginActivity extends AppCompatActivity {
                         Log.e("LoginActivity", "JSON 파싱 오류: " + e.getMessage());
                         Toast.makeText(LoginActivity.this, "로그인 처리 중 오류 발생", Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                }
+                else {
                     Log.e("LoginActivity", "로그인 실패: " + response.message());
                     Toast.makeText(LoginActivity.this, "로그인 실패: " + response.message(), Toast.LENGTH_SHORT).show();
                 }

@@ -202,7 +202,8 @@ public class foodActivity extends AppCompatActivity {
         if ((isSelectedO && correctAnswer) || (!isSelectedO && !correctAnswer)) {
             Toast.makeText(this, "정답입니다!", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
-        } else {
+        }
+        else {
             Toast.makeText(this, "오답입니다!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -245,13 +246,15 @@ public class foodActivity extends AppCompatActivity {
 
             if (currentItem.isDog_b()) {
                 textView2.setBackgroundResource(R.drawable.orangebox);
-            } else {
+            }
+            else {
                 textView2.setBackgroundResource(R.drawable.darkgraybox);
             }
 
             if (currentItem.isCat_b()) {
                 textView3.setBackgroundResource(R.drawable.orangebox);
-            } else {
+            }
+            else {
                 textView3.setBackgroundResource(R.drawable.darkgraybox);
             }
 

@@ -51,21 +51,21 @@ public class BoardWriteActivity extends AppCompatActivity {
             String boardTitle = boardWriteTitle.getText().toString();
             String boardText = boardWriteText.getText().toString();
 
-            if (boardTitle.isEmpty()) {
-                boardWriteTitle.setError("제목을 입력해주세요.");
-                boardWriteTitle.requestFocus();
-                return;
-            }
-            if (boardText.isEmpty()) {
-                boardWriteText.setError("내용을 입력해주세요.");
-                boardWriteText.requestFocus();
-                return;
-            }
+                if (boardTitle.isEmpty()) {
+                    boardWriteTitle.setClickable(false);
+                    boardWriteTitle.setError("제목을 입력해주세요.");
+                    boardWriteTitle.requestFocus(); // 제목 입력창으로 포커스 이동
+                    return;
+                }
+                if (boardText.isEmpty()) {
+                    boardWriteTitle.setClickable(false);
+                    boardWriteText.setError("내용을 입력해주세요.");
+                    boardWriteText.requestFocus(); // 내용 입력창으로 포커스 이동
+                    return;
+                }
 
-            // 현재 날짜 추가
             String currentDate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
 
-            // 기존 인텐트 기반 로직
             Intent intent = new Intent();
             intent.putExtra("boardTitle", boardTitle);
             intent.putExtra("boardText", boardText);
@@ -117,13 +117,12 @@ public class BoardWriteActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    // 게시글 전송 성공 로그
                     Log.d("BoardWriteActivity", "게시글 서버 전송 성공!");
                     runOnUiThread(() ->
                             Toast.makeText(BoardWriteActivity.this, "게시글 서버 전송 성공!", Toast.LENGTH_SHORT).show()
                     );
-                } else {
-                    // 서버 응답 오류 로그
+                }
+                else {
                     Log.e("BoardWriteActivity", "서버 응답 오류: " + response.message());
                     runOnUiThread(() ->
                             Toast.makeText(BoardWriteActivity.this, "서버 오류: " + response.message(), Toast.LENGTH_SHORT).show()

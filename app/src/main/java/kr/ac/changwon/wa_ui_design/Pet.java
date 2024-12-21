@@ -21,7 +21,6 @@ public class Pet {
     @SerializedName("photo_url")
     private String photo;
 
-    // userId를 포함한 생성자
     public Pet(String userId, String name, String species, String age, String gender, String photo) {
         this.userId = userId;
         this.name = name;

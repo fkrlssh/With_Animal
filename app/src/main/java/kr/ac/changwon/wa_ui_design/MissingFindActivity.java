@@ -93,7 +93,6 @@ public class MissingFindActivity extends AppCompatActivity {
             }
 
             if (!hasError) {
-                // 신고 처리 로직
                 finish();
             }
         });

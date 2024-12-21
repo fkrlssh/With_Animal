@@ -37,7 +37,6 @@ public class PetRegisterActivity extends AppCompatActivity {
 
         if (userId == null) {
             Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
-            // 로그인 화면으로 이동
             Intent intent = new Intent(PetRegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -113,10 +112,7 @@ public class PetRegisterActivity extends AppCompatActivity {
                 }
 
                 if (isValid) {
-                    // 성별 값 설정
                     String gender = (selectedGenderId == R.id.register_male) ? "남" : "여";
-
-                    // 서버에 등록 요청
                     registerPetOnServer(userId, petName, petSpecies, petAge, gender, photoPath);
                 }
             }
@@ -140,7 +136,8 @@ public class PetRegisterActivity extends AppCompatActivity {
 
                     ImageView petPhoto = findViewById(R.id.register_petphoto);
                     petPhoto.setImageURI(Uri.parse(photoPath));
-                } else {
+                }
+                else {
                     Toast.makeText(this, "사진 경로를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }

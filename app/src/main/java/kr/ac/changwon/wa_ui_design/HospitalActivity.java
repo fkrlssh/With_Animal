@@ -41,7 +41,6 @@ public class HospitalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital);
 
-        // 돌아가기 버튼 설정
         ImageButton hospitalReturnMain = findViewById(R.id.hospital_return_home);
         hospitalReturnMain.setOnClickListener(view -> {
             Intent intent = new Intent(HospitalActivity.this, MainActivity.class);
@@ -64,10 +63,10 @@ public class HospitalActivity extends AppCompatActivity {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hospitalSpinner.setAdapter(spinnerAdapter);
 
-        // 위치 권한 확인 및 요청
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
-        } else {
+        }
+        else {
             getCurrentLocation();
         }
 
@@ -327,15 +326,11 @@ public class HospitalActivity extends AppCompatActivity {
             String reviewDate = data.getStringExtra("REVIEW_DATE");
             String userId = data.getStringExtra("REVIEW_ID");
 
-
-            // 병원 이름을 기준으로 해당 병원 객체를 찾음
             for (Hospital hospital : hospitalList) {
                 if (hospital.getName().equals(hospitalName)) {
-                    // 리뷰 추가 및 평균 별점 업데이트
                     HospitalReviewItem newReview = new HospitalReviewItem(userId, reviewText, reviewRating, reviewDate);
                     hospital.addReview(newReview);
 
-                    // 병원 리스트 어댑터 갱신
                     adapter.notifyDataSetChanged();
                     break;
                 }

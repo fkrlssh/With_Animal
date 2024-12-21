@@ -35,7 +35,7 @@ public class PetPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = LayoutInflater.from(context).inflate(R.layout.pet_item, container, false); // 새로운 레이아웃 파일 사용
+        View view = LayoutInflater.from(context).inflate(R.layout.pet_item, container, false);
         Pet pet = petList.get(position);
 
 
