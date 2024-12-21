@@ -49,19 +49,17 @@ public class foodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food);
 
-        showQuizpopup();
+        String today = getTodayDate();
 
-//        String today = getTodayDate();
-//
-//        SharedPreferences day = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//        String lastShownDate = day.getString(KEY_LAST_SHOWN_DATE, "");
-//
-//        if(!today.equals(lastShownDate)){
-//            showQuizpopup();
-//            SharedPreferences.Editor ed = day.edit();
-//            ed.putString(KEY_LAST_SHOWN_DATE, today);
-//            ed.apply();
-//        }
+        SharedPreferences day = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String lastShownDate = day.getString(KEY_LAST_SHOWN_DATE, "");
+
+        if(!today.equals(lastShownDate)){
+            showQuizpopup();
+            SharedPreferences.Editor ed = day.edit();
+            ed.putString(KEY_LAST_SHOWN_DATE, today);
+            ed.apply();
+        }
 
         ImageButton foodReturnHome = findViewById(R.id.food_return_home);
         foodReturnHome.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +82,6 @@ public class foodActivity extends AppCompatActivity {
         itemList.add(new foodListItem("블루베리","강아지","고양이",true,false));
         itemList.add(new foodListItem("버섯","강아지","고양이",true,false));
         itemList.add(new foodListItem("고양이 사료","강아지","고양이",false,true));
-
         itemList.add(new foodListItem("고구마","강아지","고양이",true,true));
         itemList.add(new foodListItem("사과","강아지","고양이",true,true));
         itemList.add(new foodListItem("옥수수","강아지","고양이",true,true));
@@ -129,10 +126,10 @@ public class foodActivity extends AppCompatActivity {
 
 
     }
-//    private String getTodayDate() {
-//        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-//        return date.format(new Date());
-//    }
+    private String getTodayDate() {
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        return date.format(new Date());
+    }
 
     private static class Quiz{
         private String quizstring;
