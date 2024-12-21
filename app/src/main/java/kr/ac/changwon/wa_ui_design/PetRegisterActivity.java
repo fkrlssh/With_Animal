@@ -183,6 +183,15 @@ public class PetRegisterActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "등록 성공", Toast.LENGTH_SHORT).show();
+
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("petName", petName);
+                    resultIntent.putExtra("petSpecies", petSpecies);
+                    resultIntent.putExtra("petAge", petAge);
+                    resultIntent.putExtra("gender", gender);
+                    resultIntent.putExtra("photoPath", photoPath);
+                    setResult(RESULT_OK, resultIntent);
+
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "등록 실패: " + response.code(), Toast.LENGTH_SHORT).show();

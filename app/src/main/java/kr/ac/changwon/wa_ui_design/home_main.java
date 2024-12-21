@@ -1,5 +1,6 @@
 package kr.ac.changwon.wa_ui_design;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +34,8 @@ public class home_main extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private static final int REQUEST_CODE_REGISTER = 1001;
 
     private String mParam1;
     private String mParam2;
@@ -87,7 +90,7 @@ public class home_main extends Fragment {
 
         homeAnimalPlusButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), PetRegisterActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE_REGISTER);
         });
 
         homeCalenderButton.setOnClickListener(v -> {
@@ -142,6 +145,19 @@ public class home_main extends Fragment {
         // 서버에서 데이터를 가져옵니다.
         fetchPetsFromServer(initialView, viewPager);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_REGISTER && resultCode == Activity.RESULT_OK) {
+            // 등록 완료 후 서버에서 최신 데이터 가져오기
+            FrameLayout initialView = getView().findViewById(R.id.home_initial_view);
+            ViewPager viewPager = getView().findViewById(R.id.home_view_pager);
+            fetchPetsFromServer(initialView, viewPager);
+        }
+    }
+
 
     /**
      * 서버에서 동물 데이터를 가져오는 메서드
