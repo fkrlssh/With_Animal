@@ -31,16 +31,18 @@ public class BoardTextPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.board_textpage);
 
+        ImageButton boardTextpageReturnB = findViewById(R.id.board_textpage_returnB);
+        boardTextpageReturnB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         // 글 데이터
         TextView boardTitle = findViewById(R.id.board_textpage_title);
         TextView boardText = findViewById(R.id.board_textpage_text);
         TextView boardDate = findViewById(R.id.board_textpage_date);
-
-        TextView boardCategory = findViewById(R.id.board_category);
-        boolean isQuestionBoard = getIntent().getBooleanExtra("isQuestionBoard", false);
-        boolean isTipBoard = getIntent().getBooleanExtra("isTipBoard", false);
-
-        boardCategory.setText(isQuestionBoard ? "질문" : "꿀팁");
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("boardTitle");

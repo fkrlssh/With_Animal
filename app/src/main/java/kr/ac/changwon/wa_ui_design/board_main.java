@@ -37,14 +37,8 @@ import retrofit2.Response;
  */
 public class board_main extends Fragment {
     private ListView listView;
-    private ListView questionListView;
-    private ListView tipListView;
     private ArrayList<BoardWrite> boardList; // 전체글
     private BoardWriteAdapter boardwriteAdapter;
-    private ArrayList<BoardWrite> questionList; // 질문만
-    private BoardWriteAdapter questionAdapter;
-    private ArrayList<BoardWrite> tipList; // 팁만
-    private BoardWriteAdapter tipAdapter;
 
 
 
@@ -87,8 +81,6 @@ public class board_main extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         boardList = new ArrayList<>();
-        questionList = new ArrayList<>();
-        tipList = new ArrayList<>();
     }
 
     @Override
@@ -105,26 +97,9 @@ public class board_main extends Fragment {
 
         EditText searchField = view.findViewById(R.id.board_search);
 
-
-        // 전체 글
         listView = view.findViewById(R.id.board_listview);
         boardwriteAdapter = new BoardWriteAdapter(getContext(), boardList);
         listView.setAdapter(boardwriteAdapter);
-
-
-        // 질문만
-        questionListView = view.findViewById(R.id.question_list);
-        if (questionListView != null) {
-            questionAdapter = new BoardWriteAdapter(getContext(), questionList);
-            questionListView.setAdapter(questionAdapter);
-        }
-
-        // 팁만
-        tipListView = view.findViewById(R.id.tip_list);
-        if (tipListView != null) {
-            tipAdapter = new BoardWriteAdapter(getContext(), tipList);
-            tipListView.setAdapter(tipAdapter);
-        }
 
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             BoardWrite selectedBoard = boardList.get(position);
@@ -139,21 +114,6 @@ public class board_main extends Fragment {
         boardWriteB.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
             startActivityForResult(intent, 1);
-        });
-
-        Button boardQuestionB = view.findViewById(R.id.board_questionB); // 질문 게시판 이동 버튼
-        boardQuestionB.setOnClickListener(v -> {
-            if (questionAdapter != null) {
-                questionAdapter.notifyDataSetChanged();
-            }
-            Intent intent = new Intent(getActivity(), BoardQuestionActivity.class);
-            startActivity(intent);
-        });
-
-        Button boardTopB = view.findViewById(R.id.board_tipB); // 팁 게시판 이동 버튼
-        boardTopB.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), BoardTipActivity.class);
-            startActivity(intent);
         });
 
         // 서버에서 게시물 데이터를 가져오는 메서드 호출
@@ -187,27 +147,10 @@ public class board_main extends Fragment {
                         );
 
                         boardList.add(boardWrite);
-
-                        // 질문 게시물이면 questionList에도 추가
-                        if (isQuestion) {
-                            questionList.add(boardWrite);
-                        }
-
-                        // 팁 게시물이면 tipList에도 추가
-                        if (isTip) {
-                            tipList.add(boardWrite);
-                        }
                     }
 
-                    // 각 어댑터 업데이트
                     if (boardwriteAdapter != null) {
                         boardwriteAdapter.notifyDataSetChanged();
-                    }
-                    if (questionAdapter != null) {
-                        questionAdapter.notifyDataSetChanged();
-                    }
-                    if (tipAdapter != null) {
-                        tipAdapter.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(getContext(), "게시물을 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
@@ -264,16 +207,6 @@ public class board_main extends Fragment {
 
             // 일반 게시판에 모든 글 추가
             addBoardList(boardTitle, boardText, boardDate, isQuestionBoard, isTipBoard);
-
-            // 질문 게시판에 추가되는 경우
-            if (isQuestionBoard) {
-                addQuestionList(boardTitle, boardText, boardDate);
-            }
-
-            // 팁 게시판에 추가되는 경우
-            if (isTipBoard) {
-                addTipList(boardTitle, boardText, boardDate);
-            }
         }
     }
 
@@ -284,22 +217,6 @@ public class board_main extends Fragment {
 
         if (boardwriteAdapter != null) {
             boardwriteAdapter.notifyDataSetChanged();  // 없으면 UI에 표시 안돼
-        }
-    }
-
-    public void addQuestionList(String boardTitle, String boardText, String boardDate) {
-        BoardWrite board = new BoardWrite(boardTitle, boardText, boardDate, true, false);
-        questionList.add(0,board);
-        if (questionAdapter != null) {
-            questionAdapter.notifyDataSetChanged();  // 없으면 ui에 표시 안돼
-        }
-    }
-
-    public void addTipList(String boardTitle, String boardText, String boardDate) {
-        BoardWrite board = new BoardWrite(boardTitle, boardText, boardDate, false, true);
-        tipList.add(0,board);
-        if (tipAdapter != null) {
-            tipAdapter.notifyDataSetChanged();  // 없으면 ui에 표시 안돼
         }
     }
 }

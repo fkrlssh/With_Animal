@@ -108,44 +108,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="게시판 지정"
-                android:textSize="17sp"
-                android:textStyle="bold"/>
-            <!--등록 게시판 선택창-->
-            <android.widget.RadioGroup
-                android:id="@+id/boardwrite_RG"
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
-                <!--질문 게시판 등록-->
-                <android.widget.RadioButton
-                    android:id="@+id/board_write_question"
-                    android:layout_width="187dp"
-                    android:layout_height="35dp"
-                    android:text="질문"
-                    android:background="@drawable/radiobuttonleft"
-                    android:textColor="@drawable/radiobuttontext"
-                    android:textAlignment="center"
-                    android:button="@null"/>
-                <!--꿀팁 게시판 등록-->
-                <android.widget.RadioButton
-                    android:id="@+id/board_write_tip"
-                    android:layout_width="187dp"
-                    android:layout_height="35dp"
-                    android:text="꿀팁"
-                    android:background="@drawable/radiobuttonright"
-                    android:textColor="@drawable/radiobuttontext"
-                    android:textAlignment="center"
-                    android:layout_marginRight="2dp"
-                    android:button="@null"/>
-            </android.widget.RadioGroup>
         </LinearLayout>
     </ScrollView>
 

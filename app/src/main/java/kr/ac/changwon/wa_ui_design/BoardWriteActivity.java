@@ -36,9 +36,6 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         EditText boardWriteTitle = findViewById(R.id.board_write_title);
         EditText boardWriteText = findViewById(R.id.board_write_text);
-        boardWriteRadioGroup = findViewById(R.id.boardwrite_RG);
-        boardWriteQuestion = findViewById(R.id.board_write_question);
-        boardWriteTip = findViewById(R.id.board_write_tip);
 
         Button boardWriteRegisterB = findViewById(R.id.board_wrtie_registerB);
         boardWriteRegisterB.setOnClickListener(new View.OnClickListener() {
@@ -68,13 +65,6 @@ public class BoardWriteActivity extends AppCompatActivity {
                 intent.putExtra("boardDate", currentDate);
 
                 intent.putExtra("isGeneralBoard", true);
-
-                // 질문 게시판 등록 여부 확인
-                boolean isQuestionBoard = boardWriteRadioGroup.getCheckedRadioButtonId() == boardWriteQuestion.getId();
-                intent.putExtra("isQuestionBoard", isQuestionBoard);
-
-                boolean isTipBoard = boardWriteRadioGroup.getCheckedRadioButtonId() == boardWriteTip.getId();
-                intent.putExtra("isTipBoard", isTipBoard);
 
                 setResult(RESULT_OK, intent);
                 finish();
