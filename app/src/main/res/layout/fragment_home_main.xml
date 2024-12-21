@@ -49,7 +49,9 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="15dp"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/wa_icon"
+                android:visibility="visible"/>
             <!--동물 이름-->
             <TextView
                 android:id="@+id/home_petname"
@@ -60,7 +62,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
             <!--동물 종-->
             <TextView
                 android:id="@+id/home_petspecies"
@@ -71,7 +73,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>/>
+                android:visibility="visible"/>/>
             <!--동물 나이-->
             <TextView
                 android:id="@+id/home_petage"
@@ -82,7 +84,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>/>
+                android:visibility="visible"/>/>
 
             <TextView
                 android:id="@+id/home_petgender"
@@ -93,7 +95,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>/>
+                android:visibility="visible"/>/>
 
             <View
                 android:layout_width="374dp"

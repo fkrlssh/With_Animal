@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.home_Fragment);
         homeF = new home_main();
         boardF = new board_main();
-        notificationF = new notification_main();
 
         loadFragment(homeF);
 
@@ -48,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if (itemId == R.id.home_Fragment) {
                     fragment = homeF;
-                } else if (itemId == R.id.notification_Fragment) {
-                    fragment = notificationF;
                 } else if (itemId == R.id.board_Fragment) {
                     fragment = boardF;
                 }
