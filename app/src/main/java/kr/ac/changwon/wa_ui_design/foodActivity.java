@@ -82,7 +82,6 @@ public class foodActivity extends AppCompatActivity {
         itemList.add(new foodListItem("블루베리","강아지","고양이",true,false));
         itemList.add(new foodListItem("버섯","강아지","고양이",true,false));
         itemList.add(new foodListItem("고양이 사료","강아지","고양이",false,true));
-
         itemList.add(new foodListItem("고구마","강아지","고양이",true,true));
         itemList.add(new foodListItem("사과","강아지","고양이",true,true));
         itemList.add(new foodListItem("옥수수","강아지","고양이",true,true));

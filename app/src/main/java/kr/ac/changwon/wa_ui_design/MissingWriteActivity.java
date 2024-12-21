@@ -2,6 +2,7 @@ package kr.ac.changwon.wa_ui_design;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,9 +19,21 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MissingWriteActivity extends AppCompatActivity {
 
@@ -38,6 +51,7 @@ public class MissingWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.missing_write);
 
+        // 돌아가기 버튼
         ImageButton missingWriteReturn = findViewById(R.id.missing_write_return_missing);
         missingWriteReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +62,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
+        // 사진 등록 버튼
         missingWritePetphoto = findViewById(R.id.missing_write_petphoto);
         ImageButton photoAddButton = findViewById(R.id.missing_write_photoadd);
         photoAddButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +90,7 @@ public class MissingWriteActivity extends AppCompatActivity {
         ImageButton dateButton = findViewById(R.id.missing_write_dateButton);
         dateButton.setOnClickListener(view -> showDatePickerDialog());
 
+        // 특징 부분
         missingWriteChar = findViewById(R.id.missing_write_char);
         missingWriteChar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -96,6 +112,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
+        // 등록 버튼
         Button missingWriteRegisterB = findViewById(R.id.missing_write_registerB);
         missingWriteRegisterB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +122,7 @@ public class MissingWriteActivity extends AppCompatActivity {
                 String description = missingWriteChar.getText().toString().trim();
                 String photoUri = missingWritePetphoto.getTag() != null ? missingWritePetphoto.getTag().toString() : null;
 
+                // 입력값 검증
                 boolean hasError = false;
 
                 if (place.isEmpty()) {
@@ -123,14 +141,34 @@ public class MissingWriteActivity extends AppCompatActivity {
                 }
 
                 if (!hasError) {
-                    String name = "이름";
-                    String species = "종";
-                    MissingData missingData = new MissingData(name, species, 0, "미상", place, date, description, photoUri);
+                    LostPet lostPet = new LostPet();
+                    lostPet.setName("이름");  // 임시 데이터
+                    lostPet.setSpecies("종");
+                    lostPet.setLost_date(date);
+                    lostPet.setLost_location(place);
+                    lostPet.setDescription(description);
+                    lostPet.setPhoto_url(photoUri);
 
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("newData", missingData);
-                    setResult(RESULT_OK, resultIntent);
-                    finish();
+                    Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+                    ApiService apiService = retrofit.create(ApiService.class);
+                    Call<Void> call = apiService.registerLostPet(lostPet);
+
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+                                Toast.makeText(MissingWriteActivity.this, "등록 성공!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(MissingWriteActivity.this, "등록 실패: " + response.code(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(MissingWriteActivity.this, "서버 오류 발생", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
@@ -148,15 +186,8 @@ public class MissingWriteActivity extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePickerStyle, (view, year1, month1, dayOfMonth) -> {
             selectedDate.set(year1, month1, dayOfMonth);
-            setTodayAsDefaultDate(); // 선택한 날짜 반영
+            setTodayAsDefaultDate();
         }, year, month, day);
-
-        datePickerDialog.setOnShowListener(dialog -> {
-            Button positiveButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE);
-            positiveButton.setTextColor(getResources().getColor(R.color.black));
-            Button negativeButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE);
-            negativeButton.setTextColor(getResources().getColor(R.color.black));
-        });
 
         datePickerDialog.show();
 
@@ -165,20 +196,76 @@ public class MissingWriteActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_CODE_MAP && resultCode == RESULT_OK && data != null) {
             String address = data.getStringExtra("address");
             missingWritePlace.setText(address);
-        }
-        else if (requestCode == REQUEST_CODE_PHOTO && resultCode == RESULT_OK && data != null) {
+        } else if (requestCode == REQUEST_CODE_PHOTO && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
+
             if (selectedImage != null) {
                 missingWritePetphoto.setImageURI(selectedImage);
-                missingWritePetphoto.setTag(selectedImage.toString());
-            }
-            else {
-                Toast.makeText(this, "이미지를 선택하지 못했습니다.", Toast.LENGTH_SHORT).show();
+                uploadPhoto(selectedImage);  // 이미지 업로드 메소드 호출
+            } else {
+                Toast.makeText(this, "사진을 선택하지 못했습니다.", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    // 이미지 파일 업로드 메소드
+    private void uploadPhoto(Uri imageUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            int bytesRead;
+            byte[] data = new byte[1024];
+            while ((bytesRead = inputStream.read(data, 0, data.length)) != -1) {
+                buffer.write(data, 0, bytesRead);
+            }
+            byte[] byteArray = buffer.toByteArray();
+            buffer.close();
+            inputStream.close();
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), byteArray);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("photo", "upload.jpg", requestFile);
+            RequestBody description = RequestBody.create(MultipartBody.FORM, "실종 동물 사진");
+
+            Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+            ApiService apiService = retrofit.create(ApiService.class);
+            Call<ResponseBody> call = apiService.uploadPhoto(body, description);
+
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        try {
+                            String uploadedImageUrl = response.body().string();
+                            missingWritePetphoto.setImageURI(imageUri);
+                            missingWritePetphoto.setTag(uploadedImageUrl);
+                            if (!isFinishing()) {
+                                Toast.makeText(getApplicationContext(), "사진 업로드 성공", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        if (!isFinishing()) {
+                            Toast.makeText(getApplicationContext(), "사진 업로드 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    if (!isFinishing()) {
+                        Toast.makeText(getApplicationContext(), "서버 연결 실패", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "사진 업로드 중 오류 발생", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
