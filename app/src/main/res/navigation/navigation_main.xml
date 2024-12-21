@@ -11,11 +11,6 @@
         android:label="fragment_home_main"
         tools:layout="@layout/fragment_home_main" />
     <fragment
-        android:id="@+id/notification_main"
-        android:name="kr.ac.changwon.wa_ui_design.notification_main"
-        android:label="fragment_notification_main"
-        tools:layout="@layout/fragment_notification_main" />
-    <fragment
         android:id="@+id/board_main"
         android:name="kr.ac.changwon.wa_ui_design.board_main"
         android:label="fragment_board_main"

@@ -81,10 +81,12 @@
             android:layout_gravity="center_horizontal">
 
             <View
+                android:id="@+id/mainbox"
                 android:layout_width="375dp"
                 android:layout_height="180dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"/>
+                android:layout_marginTop="140dp"
+                android:background="@drawable/mainbox"/>
             <!--동물 사진-->
             <ImageView
                 android:id="@+id/home_petphoto"
@@ -92,7 +94,9 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="15dp"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/wa_icon"
+                android:visibility="visible"/>
             <!--동물 이름-->
             <TextView
                 android:id="@+id/home_petname"
@@ -103,7 +107,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
             <!--동물 종-->
             <TextView
                 android:id="@+id/home_petspecies"
@@ -114,7 +118,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>/>
+                android:visibility="visible"/>/>
             <!--동물 나이-->
             <TextView
                 android:id="@+id/home_petage"
@@ -125,7 +129,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>/>
+                android:visibility="visible"/>/>
 
             <TextView
                 android:id="@+id/home_petgender"
@@ -136,7 +140,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:background="@drawable/textbox"
-                android:visibility="invisible"/>/>
+                android:visibility="visible"/>/>
 
             <View
                 android:layout_width="374dp"
