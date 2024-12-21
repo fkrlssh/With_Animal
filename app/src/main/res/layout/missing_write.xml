@@ -165,7 +165,7 @@
         android:textStyle="bold"/>
 
     <Spinner
-        android:id="@+id/missing_spinner"
+        android:id="@+id/missing_write_pet_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
