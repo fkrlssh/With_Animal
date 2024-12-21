@@ -49,19 +49,17 @@ public class foodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food);
 
-        showQuizpopup();
+        String today = getTodayDate();
 
-//        String today = getTodayDate();
-//
-//        SharedPreferences day = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-//        String lastShownDate = day.getString(KEY_LAST_SHOWN_DATE, "");
-//
-//        if(!today.equals(lastShownDate)){
-//            showQuizpopup();
-//            SharedPreferences.Editor ed = day.edit();
-//            ed.putString(KEY_LAST_SHOWN_DATE, today);
-//            ed.apply();
-//        }
+        SharedPreferences day = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String lastShownDate = day.getString(KEY_LAST_SHOWN_DATE, "");
+
+        if(!today.equals(lastShownDate)){
+            showQuizpopup();
+            SharedPreferences.Editor ed = day.edit();
+            ed.putString(KEY_LAST_SHOWN_DATE, today);
+            ed.apply();
+        }
 
         ImageButton foodReturnHome = findViewById(R.id.food_return_home);
         foodReturnHome.setOnClickListener(new View.OnClickListener() {
@@ -129,10 +127,10 @@ public class foodActivity extends AppCompatActivity {
 
 
     }
-//    private String getTodayDate() {
-//        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-//        return date.format(new Date());
-//    }
+    private String getTodayDate() {
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        return date.format(new Date());
+    }
 
     private static class Quiz{
         private String quizstring;
@@ -205,7 +203,8 @@ public class foodActivity extends AppCompatActivity {
         if ((isSelectedO && correctAnswer) || (!isSelectedO && !correctAnswer)) {
             Toast.makeText(this, "정답입니다!", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
-        } else {
+        }
+        else {
             Toast.makeText(this, "오답입니다!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -248,13 +247,15 @@ public class foodActivity extends AppCompatActivity {
 
             if (currentItem.isDog_b()) {
                 textView2.setBackgroundResource(R.drawable.orangebox);
-            } else {
+            }
+            else {
                 textView2.setBackgroundResource(R.drawable.darkgraybox);
             }
 
             if (currentItem.isCat_b()) {
                 textView3.setBackgroundResource(R.drawable.orangebox);
-            } else {
+            }
+            else {
                 textView3.setBackgroundResource(R.drawable.darkgraybox);
             }
 

@@ -3,7 +3,7 @@ package kr.ac.changwon.wa_ui_design;
 import com.google.gson.annotations.SerializedName;
 
 public class Pet {
-    @SerializedName("user_id") // 서버와의 통신에서 "user_id"로 매핑
+    @SerializedName("user_id")
     private String userId;
 
     @SerializedName("pet_name")
@@ -21,7 +21,6 @@ public class Pet {
     @SerializedName("photo_url")
     private String photo;
 
-    // userId를 포함한 생성자
     public Pet(String userId, String name, String species, String age, String gender, String photo) {
         this.userId = userId;
         this.name = name;
@@ -31,7 +30,6 @@ public class Pet {
         this.photo = photo;
     }
 
-    // userId 없이 사용할 수 있는 기본 생성자 (photo를 빈 문자열로 설정)
     public Pet(String name, String species, String age, String gender) {
         this("", name, species, age, gender, "");
     }

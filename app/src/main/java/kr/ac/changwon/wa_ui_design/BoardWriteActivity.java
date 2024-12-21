@@ -47,13 +47,13 @@ public class BoardWriteActivity extends AppCompatActivity {
                 if (boardTitle.isEmpty()) {
                     boardWriteTitle.setClickable(false);
                     boardWriteTitle.setError("제목을 입력해주세요.");
-                    boardWriteTitle.requestFocus(); // 제목 입력창으로 포커스 이동
+                    boardWriteTitle.requestFocus();
                     return;
                 }
                 if (boardText.isEmpty()) {
                     boardWriteTitle.setClickable(false);
                     boardWriteText.setError("내용을 입력해주세요.");
-                    boardWriteText.requestFocus(); // 내용 입력창으로 포커스 이동
+                    boardWriteText.requestFocus();
                     return;
                 }
 

@@ -30,7 +30,6 @@ public class CalenderAddActivity extends AppCompatActivity {
         Button addButton = findViewById(R.id.add_list);
         Button cancelButton = findViewById(R.id.add_list_cancel);
 
-        // 선택한 날짜 가져오기
         long dateMillis = getIntent().getLongExtra("selectedDate", -1);
         Date selectedDate = new Date(dateMillis);
 

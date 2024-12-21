@@ -38,7 +38,6 @@ public class MissingWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.missing_write);
 
-        // 돌아가기 버튼
         ImageButton missingWriteReturn = findViewById(R.id.missing_write_return_missing);
         missingWriteReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +48,6 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 사진 등록 버튼
         missingWritePetphoto = findViewById(R.id.missing_write_petphoto);
         ImageButton photoAddButton = findViewById(R.id.missing_write_photoadd);
         photoAddButton.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +75,6 @@ public class MissingWriteActivity extends AppCompatActivity {
         ImageButton dateButton = findViewById(R.id.missing_write_dateButton);
         dateButton.setOnClickListener(view -> showDatePickerDialog());
 
-        // 특징 부분
         missingWriteChar = findViewById(R.id.missing_write_char);
         missingWriteChar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -99,7 +96,6 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 등록 버튼
         Button missingWriteRegisterB = findViewById(R.id.missing_write_registerB);
         missingWriteRegisterB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +105,6 @@ public class MissingWriteActivity extends AppCompatActivity {
                 String description = missingWriteChar.getText().toString().trim();
                 String photoUri = missingWritePetphoto.getTag() != null ? missingWritePetphoto.getTag().toString() : null;
 
-                // 입력값 검증
                 boolean hasError = false;
 
                 if (place.isEmpty()) {
@@ -128,14 +123,14 @@ public class MissingWriteActivity extends AppCompatActivity {
                 }
 
                 if (!hasError) {
-                    String name = "이름"; // DB에서 가져올 예정
-                    String species = "종"; // DB에서 가져올 예정
+                    String name = "이름";
+                    String species = "종";
                     MissingData missingData = new MissingData(name, species, 0, "미상", place, date, description, photoUri);
 
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("newData", missingData);
                     setResult(RESULT_OK, resultIntent);
-                    finish(); // 현재 Activity 종료 후 이전으로 돌아감
+                    finish();
                 }
             }
         });
@@ -158,9 +153,9 @@ public class MissingWriteActivity extends AppCompatActivity {
 
         datePickerDialog.setOnShowListener(dialog -> {
             Button positiveButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE);
-            positiveButton.setTextColor(getResources().getColor(R.color.black)); // 원하는 색상으로 설정
+            positiveButton.setTextColor(getResources().getColor(R.color.black));
             Button negativeButton = datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE);
-            negativeButton.setTextColor(getResources().getColor(R.color.black)); // 원하는 색상으로 설정
+            negativeButton.setTextColor(getResources().getColor(R.color.black));
         });
 
         datePickerDialog.show();
@@ -178,7 +173,7 @@ public class MissingWriteActivity extends AppCompatActivity {
             Uri selectedImage = data.getData();
             if (selectedImage != null) {
                 missingWritePetphoto.setImageURI(selectedImage);
-                missingWritePetphoto.setTag(selectedImage.toString()); // Tag에 URI 저장
+                missingWritePetphoto.setTag(selectedImage.toString());
             }
             else {
                 Toast.makeText(this, "이미지를 선택하지 못했습니다.", Toast.LENGTH_SHORT).show();

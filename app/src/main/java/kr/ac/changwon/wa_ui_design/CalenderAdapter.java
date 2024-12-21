@@ -105,7 +105,6 @@ public class CalenderAdapter extends BaseAdapter {
         int dayOfMonth = dateCalendar.get(Calendar.DAY_OF_MONTH);
         dayText.setText(String.valueOf(dayOfMonth)); // 날짜 숫자 설정
 
-        // 날짜 색상 설정 (현재 달, 주말, 오늘 여부에 따라 다르게 표시)
         if (dateCalendar.get(Calendar.MONTH) != currentMonth){
             dayText.setTextColor(Color.GRAY); // 해당 달 날짜가 아닌 경우 회색을 출력
         }
@@ -119,7 +118,6 @@ public class CalenderAdapter extends BaseAdapter {
             dayText.setTextColor(Color.BLACK);
         }
 
-        // 날짜 배경 및 테두리 설정 (선택된 날짜, 오늘 날짜 등)
         GradientDrawable backgroundDrawable = new GradientDrawable();
         backgroundDrawable.setShape(GradientDrawable.RECTANGLE);
 

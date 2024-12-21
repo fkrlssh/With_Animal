@@ -39,7 +39,6 @@ public class BoardTextPageActivity extends AppCompatActivity {
             }
         });
 
-        // 글 데이터
         TextView boardTitle = findViewById(R.id.board_textpage_title);
         TextView boardText = findViewById(R.id.board_textpage_text);
         TextView boardDate = findViewById(R.id.board_textpage_date);
@@ -48,7 +47,7 @@ public class BoardTextPageActivity extends AppCompatActivity {
         String title = intent.getStringExtra("boardTitle");
         String text = intent.getStringExtra("boardText");
 
-        String date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date()); // 등록 날짜입니다
+        String date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date()); // 등록 날짜
 
         boardTitle.setText(title);
         boardText.setText(text);

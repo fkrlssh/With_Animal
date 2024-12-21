@@ -205,13 +205,11 @@ public class board_main extends Fragment {
             boolean isQuestionBoard = data.getBooleanExtra("isQuestionBoard", false);
             boolean isTipBoard = data.getBooleanExtra("isTipBoard", false);
 
-            // 일반 게시판에 모든 글 추가
             addBoardList(boardTitle, boardText, boardDate, isQuestionBoard, isTipBoard);
         }
     }
 
     public void addBoardList(String boardTitle, String boardText, String boardDate, boolean isQuestionBoard, boolean isTipBoard) {
-        // 일반 게시판에 추가될 경우 질문과 팁 여부를 포함하여 객체 생성
         BoardWrite board = new BoardWrite(boardTitle, boardText, boardDate, isQuestionBoard, isTipBoard);
         boardList.add(0,board);
 

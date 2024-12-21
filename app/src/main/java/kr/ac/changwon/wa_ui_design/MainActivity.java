@@ -76,11 +76,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent != null) {
-            // Intent로 전달된 추가 데이터를 확인하고 처리
             String fragmentToLoad = intent.getStringExtra("fragmentToLoad");
 
             if ("boardFragment".equals(fragmentToLoad)) {
-                // 게시판 관련 데이터 처리
                 String boardTitle = intent.getStringExtra("boardTitle");
                 String boardtext = intent.getStringExtra("boardtext");
                 String boardDate = intent.getStringExtra("boardDate");
@@ -89,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 boolean isTipBoard = intent.getBooleanExtra("isTipBoard", false);
 
                 if (boardTitle != null && boardtext != null) {
-                    // 게시판 프래그먼트에 데이터 추가
                     board_main fragment = (board_main) getSupportFragmentManager()
                             .findFragmentById(R.id.fragmentContainerView);
                     if (fragment != null) {
@@ -97,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                loadFragment(boardF); // 게시판 프래그먼트 로드
+                loadFragment(boardF);
                 bottomNavigationView.setSelectedItemId(R.id.board_Fragment);
-            } else {
-                // Home Fragment와 관련된 Intent 처리
+            }
+            else {
                 String petName = intent.getStringExtra("petName");
                 String petSpecies = intent.getStringExtra("petSpecies");
                 String petAge = intent.getStringExtra("petAge");
@@ -146,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
     private void requestPermissionsIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13
             String[] permissions = {
-                    android.Manifest.permission.READ_MEDIA_IMAGES, // 이미지 읽기 권한
-                    android.Manifest.permission.ACCESS_FINE_LOCATION, // 고정밀 위치 권한
-                    android.Manifest.permission.POST_NOTIFICATIONS // 알림 권한
+                    android.Manifest.permission.READ_MEDIA_IMAGES,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.POST_NOTIFICATIONS
             };
 
             boolean allGranted = true;
@@ -165,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // Android 6
             String[] permissions = {
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE, // 기존 저장소 읽기 권한
-                    android.Manifest.permission.ACCESS_FINE_LOCATION // 고정밀 위치 권한
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
             };
 
             boolean allGranted = true;

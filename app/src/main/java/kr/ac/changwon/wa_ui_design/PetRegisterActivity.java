@@ -31,54 +31,45 @@ public class PetRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_pet_register);
 
-        // SharedPreferences에서 user_id 불러오기
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         userId = sharedPreferences.getString("user_id", null);
 
         if (userId == null) {
             Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
-            // 로그인 화면으로 이동
             Intent intent = new Intent(PetRegisterActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
             return;
         }
 
-        // Retrofit 초기화
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL) // Flask 서버 URL
-                .addConverterFactory(GsonConverterFactory.create()) // JSON 변환을 위한 Gson 사용
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // ApiService 초기화
         ApiService apiService = retrofit.create(ApiService.class);
 
-        // 뒤로 가기 버튼 이벤트 설정
         ImageButton PetRegisterReturnHomeButton = findViewById(R.id.register_return_home);
         PetRegisterReturnHomeButton.setOnClickListener(view -> {
             Intent intent = new Intent(PetRegisterActivity.this, MainActivity.class);
-            startActivity(intent); // 메인 화면으로 이동
-            finish(); // 현재 액티비티 종료
+            startActivity(intent);
+            finish();
         });
 
-        // 사진 추가 버튼 이벤트 설정
         Button petPhotoButton = findViewById(R.id.register_photoB);
         petPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 갤러리에서 이미지 선택
                 Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*"); // 이미지 타입 필터링
-                startActivityForResult(intent, 101); // 101은 요청 코드
+                intent.setType("image/*");
+                startActivityForResult(intent, 101);
             }
         });
 
-        // 등록 버튼 이벤트 설정
         Button registerButton = findViewById(R.id.registerB);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 사용자 입력 값 가져오기
                 EditText petNameEditText = findViewById(R.id.register_petname);
                 EditText petSpeciesEditText = findViewById(R.id.register_petspecies);
                 EditText petAgeEditText = findViewById(R.id.register_petage);
@@ -89,7 +80,6 @@ public class PetRegisterActivity extends AppCompatActivity {
                 String petAge = petAgeEditText.getText().toString().trim();
                 int selectedGenderId = genderGroup.getCheckedRadioButtonId();
 
-                // 입력 값 검증
                 boolean isValid = true;
 
                 if (petName.isEmpty()) {
@@ -117,10 +107,7 @@ public class PetRegisterActivity extends AppCompatActivity {
                 }
 
                 if (isValid) {
-                    // 성별 값 설정
                     String gender = (selectedGenderId == R.id.register_male) ? "남" : "여";
-
-                    // 서버에 등록 요청
                     registerPetOnServer(userId, petName, petSpecies, petAge, gender, photoPath);
                 }
             }
@@ -139,20 +126,18 @@ public class PetRegisterActivity extends AppCompatActivity {
             if (selectedImageUri != null) {
                 String filePath = getRealPathFromURI(selectedImageUri);
                 if (filePath != null) {
-                    photoPath = filePath; // 선택한 사진 경로 저장
+                    photoPath = filePath;
                     Toast.makeText(this, "사진이 등록되었습니다.", Toast.LENGTH_SHORT).show();
-
-                    // 선택한 사진을 ImageView에 표시
                     ImageView petPhoto = findViewById(R.id.register_petphoto);
                     petPhoto.setImageURI(Uri.parse(photoPath));
-                } else {
+                }
+                else {
                     Toast.makeText(this, "사진 경로를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
 
-    // URI를 실제 파일 경로로 변환
     private String getRealPathFromURI(Uri contentUri) {
         String[] projection = {android.provider.MediaStore.Images.Media.DATA};
         Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
@@ -166,11 +151,9 @@ public class PetRegisterActivity extends AppCompatActivity {
         return null;
     }
 
-    // 서버에 동물 등록 요청
     private void registerPetOnServer(String userId, String petName, String petSpecies, String petAge, String gender, String photoPath) {
         Pet pet = new Pet(userId, petName, petSpecies, petAge, gender, photoPath);
 
-        // Retrofit을 통해 API 호출
         ApiService apiService = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL) // Flask 서버 URL
                 .addConverterFactory(GsonConverterFactory.create())
