@@ -177,6 +177,8 @@ public class home_main extends Fragment {
                         initialView.setVisibility(View.GONE);
                         viewPager.setVisibility(View.VISIBLE);
                     } else {
+                        petList.clear();
+                        petPagerAdapter.notifyDataSetChanged();
                         initialView.setVisibility(View.VISIBLE);
                         viewPager.setVisibility(View.GONE);
                     }
