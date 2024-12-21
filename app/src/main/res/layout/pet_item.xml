@@ -8,7 +8,6 @@
         android:layout_width="375dp"
         android:layout_height="180dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/mainbox"
         android:layout_marginTop="10dp" >
 
         <!-- 동물 사진 -->
@@ -19,7 +18,7 @@
             android:layout_marginLeft="15dp"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wa_icon"
+            android:src="@drawable/wa_icon"
             android:visibility="visible" />
 
         <!-- 동물 이름 -->

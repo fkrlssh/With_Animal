@@ -24,12 +24,19 @@
             android:background="@android:color/transparent"
             android:src="@drawable/baseline_menu_24" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/home_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
-            android:visibility="visible" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <View
+            android:id="@+id/mainbox"
+            android:layout_width="375dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:background="@drawable/mainbox"/>
+    </FrameLayout>
 
         <FrameLayout
             android:id="@+id/home_initial_view"
@@ -42,7 +49,8 @@
                 android:layout_width="375dp"
                 android:layout_height="180dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"/>
+                android:layout_marginTop="140dp"
+                android:background="@drawable/mainbox"/>
 
             <ImageView
                 android:id="@+id/main_petphoto"
@@ -50,29 +58,34 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="15dp"
-                android:src="@drawable/wa_icon" />
+                android:src="@drawable/wa_icon"
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:id="@+id/home_text1"
                 android:layout_width="180dp"
-                android:layout_height="30dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="155dp"
                 android:layout_marginLeft="180dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:background="@drawable/textbox"
-                android:text="동물을 등록해보세요!"/>
+                android:text="WA!: With Animal과\n함께 하는 반려동물 LIFE"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/textbox" />
 
             <TextView
                 android:id="@+id/home_text2"
                 android:layout_width="180dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="195dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="235dp"
                 android:layout_marginLeft="180dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:background="@drawable/textbox"
-                android:text="동물을 등록해보세요!"/>
+                android:text="플러스 버튼을 누르고\n신규 동물을 등록해 보세요!"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:background="@drawable/textbox"/>
         </FrameLayout>
 
         <FrameLayout
@@ -81,69 +94,7 @@
             android:layout_gravity="center_horizontal">
 
             <View
-                android:id="@+id/mainbox"
                 android:layout_width="375dp"
-                android:layout_height="180dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"
-                android:background="@drawable/mainbox"/>
-            <!--동물 사진-->
-            <ImageView
-                android:id="@+id/home_petphoto"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="155dp"
-                android:layout_marginLeft="15dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/wa_icon"
-                android:visibility="visible"/>
-            <!--동물 이름-->
-            <TextView
-                android:id="@+id/home_petname"
-                android:layout_width="180dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="155dp"
-                android:layout_marginLeft="180dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="visible"/>
-            <!--동물 종-->
-            <TextView
-                android:id="@+id/home_petspecies"
-                android:layout_width="180dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="195dp"
-                android:layout_marginLeft="180dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="visible"/>/>
-            <!--동물 나이-->
-            <TextView
-                android:id="@+id/home_petage"
-                android:layout_width="180dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="235dp"
-                android:layout_marginLeft="180dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="visible"/>/>
-
-            <TextView
-                android:id="@+id/home_petgender"
-                android:layout_width="180dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="275dp"
-                android:layout_marginLeft="180dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:background="@drawable/textbox"
-                android:visibility="visible"/>/>
-
-            <View
-                android:layout_width="374dp"
                 android:layout_height="40dp"
                 android:background="@drawable/homeorangetop"
                 android:layout_marginTop="100dp"/>
@@ -210,6 +161,15 @@
             </ScrollView>
 
         </FrameLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/home_view_pager"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:visibility="visible"
+            android:layout_gravity="center_horizontal"/>
 
     </FrameLayout>
     <!--카테고리창-->
