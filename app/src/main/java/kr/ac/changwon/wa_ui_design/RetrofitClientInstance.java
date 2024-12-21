@@ -47,7 +47,6 @@ public class RetrofitClientInstance {
         return retrofit;
     }
 
-    // ngrok URL 직접 확인 (서버 연결 확인)
     public static void validateNgrokUrl() {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()

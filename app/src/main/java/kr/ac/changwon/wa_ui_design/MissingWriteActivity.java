@@ -62,7 +62,6 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 사진 등록 버튼
         missingWritePetphoto = findViewById(R.id.missing_write_petphoto);
         ImageButton photoAddButton = findViewById(R.id.missing_write_photoadd);
         photoAddButton.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +72,6 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 실종 장소
         missingWritePlace = findViewById(R.id.missing_write_place);
         ImageButton placeButton = findViewById(R.id.missing_write_placeButton);
         placeButton.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +88,6 @@ public class MissingWriteActivity extends AppCompatActivity {
         ImageButton dateButton = findViewById(R.id.missing_write_dateButton);
         dateButton.setOnClickListener(view -> showDatePickerDialog());
 
-        // 특징 부분
         missingWriteChar = findViewById(R.id.missing_write_char);
         missingWriteChar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -112,7 +109,6 @@ public class MissingWriteActivity extends AppCompatActivity {
             }
         });
 
-        // 등록 버튼
         Button missingWriteRegisterB = findViewById(R.id.missing_write_registerB);
         missingWriteRegisterB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +118,6 @@ public class MissingWriteActivity extends AppCompatActivity {
                 String description = missingWriteChar.getText().toString().trim();
                 String photoUri = missingWritePetphoto.getTag() != null ? missingWritePetphoto.getTag().toString() : null;
 
-                // 입력값 검증
                 boolean hasError = false;
 
                 if (place.isEmpty()) {
@@ -212,7 +207,6 @@ public class MissingWriteActivity extends AppCompatActivity {
         }
     }
 
-    // 이미지 파일 업로드 메소드
     private void uploadPhoto(Uri imageUri) {
         try {
             InputStream inputStream = getContentResolver().openInputStream(imageUri);

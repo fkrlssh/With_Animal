@@ -64,10 +64,8 @@ public class BoardWriteActivity extends AppCompatActivity {
                     return;
                 }
 
-            // 현재 날짜 추가
             String currentDate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
 
-            // 기존 인텐트 기반 로직
             Intent intent = new Intent();
             intent.putExtra("boardTitle", boardTitle);
             intent.putExtra("boardText", boardText);
@@ -119,13 +117,12 @@ public class BoardWriteActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    // 게시글 전송 성공 로그
                     Log.d("BoardWriteActivity", "게시글 서버 전송 성공!");
                     runOnUiThread(() ->
                             Toast.makeText(BoardWriteActivity.this, "게시글 서버 전송 성공!", Toast.LENGTH_SHORT).show()
                     );
-                } else {
-                    // 서버 응답 오류 로그
+                }
+                else {
                     Log.e("BoardWriteActivity", "서버 응답 오류: " + response.message());
                     runOnUiThread(() ->
                             Toast.makeText(BoardWriteActivity.this, "서버 오류: " + response.message(), Toast.LENGTH_SHORT).show()
