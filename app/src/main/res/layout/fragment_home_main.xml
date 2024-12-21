@@ -31,6 +31,49 @@
             android:layout_marginTop="130dp"
             android:visibility="visible" />
 
+        <FrameLayout
+            android:id="@+id/home_initial_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="visible"> <!-- 초기에는 보이도록 설정 -->
+
+            <View
+                android:layout_width="375dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="140dp"/>
+
+            <ImageView
+                android:id="@+id/main_petphoto"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="155dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/wa_icon" />
+
+            <TextView
+                android:id="@+id/home_text1"
+                android:layout_width="180dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="155dp"
+                android:layout_marginLeft="180dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:background="@drawable/textbox"
+                android:text="동물을 등록해보세요!"/>
+
+            <TextView
+                android:id="@+id/home_text2"
+                android:layout_width="180dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="195dp"
+                android:layout_marginLeft="180dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:background="@drawable/textbox"
+                android:text="동물을 등록해보세요!"/>
+        </FrameLayout>
 
         <FrameLayout
             android:layout_width="wrap_content"
