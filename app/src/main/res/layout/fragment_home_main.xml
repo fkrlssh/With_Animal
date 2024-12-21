@@ -38,10 +38,12 @@
             android:layout_gravity="center_horizontal">
 
             <View
+                android:id="@+id/mainbox"
                 android:layout_width="375dp"
                 android:layout_height="180dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"/>
+                android:layout_marginTop="140dp"
+                android:background="@drawable/mainbox"/>
             <!--동물 사진-->
             <ImageView
                 android:id="@+id/home_petphoto"
